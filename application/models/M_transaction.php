@@ -4,19 +4,42 @@ class M_transaction extends CI_Model
 {
 	public function getAllTransactionLabel()
 	{
-		// $this->db->order_by('id', 'DESC');
+		$this->db->order_by('id', 'DESC');
 		// return $this->db->get('product')->result_array();
 		return $this->db->get_where('label', ['type' => 1])->result_array();
 	}
-	public function getLabelByID()
+	public function getLabelByKey()
 	{
-		$id_uri = $this->uri->segment(3);
-		return $this->db->get_where('label', ['id' => $id_uri])->row_array();
+		$key_uri = $this->uri->segment(3);
+		return $this->db->get_where('label', ['transaction_key_label' => $key_uri])->row_array();
 	}
-	public function getProductById()
+	public function getTransactionByKey()
 	{
-		$id_uri = $this->uri->segment(3);
-		return $this->db->get_where('product', ['id' => $id_uri])->row_array();
+		$key_uri = $this->uri->segment(3);
+		// $this->db->select('item');
+		// $this->db->where('transaction_key', $key_uri);
+		// return $this->db->get('transaction')->result_array();
+		return $this->db->get_where('transaction', ['transaction_key' => $key_uri])->result_array();
+	}
+	public function getTransactionProductByKey()
+	{
+		$key_uri = $this->uri->segment(3);
+
+		$this->db->select('*');
+		$this->db->from("transaction");
+		$this->db->join('product', 'transaction.item = product.id');
+		$this->db->where('transaction.transaction_key', $key_uri);
+		$this->db->order_by("transaction.id", "asc");
+		return $this->db->get()->result_array();
+	}
+	public function getAllProduct()
+	{
+		$this->db->order_by('id', 'DESC');
+		return $this->db->get('product')->result_array();
+	}
+	public function getProductById($id)
+	{
+		return $this->db->get_where('product', ['id' => $id])->row_array();
 	}
 	public function insertTransaction()
 	{
@@ -62,27 +85,59 @@ class M_transaction extends CI_Model
 			$this->db->insert('transaction', $dataTransaction);
 		}
 	}
-	public function editProduct()
+	public function editTransaction()
 	{
-		$id = $this->input->post('id');
-		$data = [
-			'nama_product' => $this->input->post('nama'),
-			'modal_product' => $this->input->post('modal'),
-			'jual_product' => $this->input->post('jual'),
-			'berat_product' => $this->input->post('berat'),
-			'due_date_product' => strtotime($this->input->post('duedate')),
-			'date' => time(),
+		$key = $this->input->post('key');
+		$date = $this->input->post('date');
+		$pengirim = $this->input->post('pengirim');
+		$hppengirim = $this->input->post('hppengirim');
+		$penerima = $this->input->post('penerima');
+		$hppenerima = $this->input->post('hppenerima');
+		$kurir = $this->input->post('kurir');
+		$alamat = $this->input->post('alamat');
+
+		$idProduk = $this->input->post('produk');
+		$jumlah = $this->input->post('jumlah');
+
+		$total = count($idProduk);
+
+		$dataLabel = [
+			'type' => 1,
+			'sender' => $pengirim,
+			'num_sender' => $hppengirim,
+			'receiver' => $penerima,
+			'num_receiver' => $hppenerima,
+			'address_receiver' => $alamat,
+			'courier' => $kurir,
 		];
-		$this->db->where('id', $id);
-		$this->db->update('product', $data);
-		$this->session->set_flashdata('add', 'Produk berhasil diedit!');
-		redirect('product');
+		$this->db->where('transaction_key_label', $key);
+		$this->db->update('label', $dataLabel);
+
+		$this->db->where('transaction_key', $key);
+		$this->db->delete('transaction');
+
+		for ($i = 0; $i < $total; $i++) {
+			$id = $idProduk[$i];
+			$jml = $jumlah[$i];
+			$harga = $this->db->get_where('product', ['id' => $id])->row_array();
+			$price = $harga['jual_product'] * $jml;
+			$dataTransaction = [
+				'transaction_key' => $key,
+				'item' => $id,
+				'amount' => $jumlah[$i],
+				'price' => $price,
+				'date' => $date,
+			];
+
+			$this->db->insert('transaction', $dataTransaction);
+		}
 	}
-	public function deleteProduct($id)
+	public function deleteTransaction($key)
 	{
-		$gambar = $this->db->get_where('product', ['id' => $id])->row_array();
-		unlink(FCPATH . 'assets/dist/img/product/' . $gambar['gambar_product']);
-		$this->db->where('id', $id);
-		$this->db->delete('product');
+		$this->db->where('transaction_key', $key);
+		$this->db->delete('transaction');
+
+		$this->db->where('transaction_key_label', $key);
+		$this->db->delete('label');
 	}
 }

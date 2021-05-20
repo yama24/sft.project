@@ -7,6 +7,12 @@ class M_product extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get('product')->result_array();
 	}
+	public function getActiveProduct()
+	{
+		$this->db->order_by('id', 'DESC');
+		$this->db->where('product.due_date_product >', time());
+		return $this->db->get('product')->result_array();
+	}
 	public function getProductById()
 	{
 		$id_uri = $this->uri->segment(3);

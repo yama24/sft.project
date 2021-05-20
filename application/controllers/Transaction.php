@@ -28,7 +28,7 @@ class Transaction extends CI_Controller
     public function new()
     {
         $data['page'] = "New Transaction";
-        $data['product'] = $this->m_product->getAllProduct();
+        $data['product'] = $this->m_product->getActiveProduct();
         $this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
         $this->form_validation->set_rules('hppengirim', 'No. Hp Pengirim', 'required|numeric');
         // $this->form_validation->set_rules('penerima', 'Penerima', 'required');
@@ -51,38 +51,52 @@ class Transaction extends CI_Controller
     public function edit()
     {
         $data['page'] = "Edit Transaction";
-        $data['label'] = $this->m_transaction->getLabelById();
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        // $this->form_validation->set_rules('gambar', 'Gambar', 'required');
-        $this->form_validation->set_rules('modal', 'Modal', 'required|numeric');
-        $this->form_validation->set_rules('jual', 'Jual', 'required|numeric');
-        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
-        $this->form_validation->set_rules('duedate', 'Due Date', 'required');
+        $data['label'] = $this->m_transaction->getLabelByKey();
+        $data['allProduct'] = $this->m_transaction->getAllProduct();
+        $data['transactionItems'] = $this->m_transaction->getTransactionByKey();
+        $total = count($data['transactionItems']);
+        $productId = [];
+
+        for ($i = 0; $i < $total; $i++) {
+            $items = $this->m_transaction->getTransactionByKey();
+            $item = $items[$i];
+            array_push($productId, $item['item']);
+        }
+
+        $data['products'] = [];
+
+        for ($i = 0; $i < count($productId); $i++) {
+            $product = $this->m_transaction->getProductById($productId[$i]);
+            array_push($data['products'], $product);
+        }
+
+        $this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
+        $this->form_validation->set_rules('hppengirim', 'No. Hp Pengirim', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('temp/v_header', $data);
             $this->load->view('transaction/v_transaction_edit', $data);
             $this->load->view('temp/v_footer');
         } else {
-
-            $upload_image = $_FILES['gambar']['name'];
-            if ($upload_image) {
-                $this->m_product->imgProductConfig();
-                if ($this->upload->do_upload('gambar')) {
-                    $this->m_product->editProductImg();
-                } else {
-                    $this->session->set_flashdata('fail', 'Format atau ukuran gambar tidak sesuai!');
-                    redirect('product/edit/' . $this->input->post('id'));
-                    die;
-                }
-            }
-            $this->m_product->editProduct();
+            $this->m_transaction->editTransaction();
+            $this->session->set_flashdata('add', 'Transaksi berhasil diedit!');
+            redirect('transaction');
         }
     }
-    public function delete($id)
+    public function delete($key)
     {
-        $this->m_product->deleteProduct($id);
-        $this->session->set_flashdata('del', 'Produk dihapus!');
-        redirect('product');
+        $this->m_transaction->deleteTransaction($key);
+        $this->session->set_flashdata('del', 'Transaksi dihapus!');
+        redirect('transaction');
+    }
+    public function show()
+    {
+        $data['page'] = "Show Transaction";
+        $data['label'] = $this->m_transaction->getLabelByKey();
+        $data['transaction'] = $this->m_transaction->getTransactionProductByKey();
+
+        $this->load->view('temp/v_header', $data);
+        $this->load->view('transaction/v_transaction_show', $data);
+        $this->load->view('temp/v_footer');
     }
 }

@@ -53,7 +53,7 @@
 							<!-- <button data-toggle="modal" data-target="#modal-tambah" style="float: right;" class="btn btn-outline-success">
 							New Data
 							</button> -->
-							<a href="<?= base_url('product/new') ?>" class="btn btn-outline-success" style="float: right;">New Product</a>
+							<a href="<?= base_url('product/new') ?>" class="btn btn-outline-primary" style="float: right;">New Product</a>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
@@ -84,7 +84,11 @@
 											<td>Rp. <?php echo number_format($i['modal_product'], 0, ",", "."); ?></td>
 											<td>Rp. <?php echo number_format($i['jual_product'], 0, ",", "."); ?></td>
 											<td><?php echo number_format($i['berat_product'], 0, ",", "."); ?> gr</td>
-											<td><?php echo date('d M Y H:i', $i['due_date_product']); ?></td>
+											<td><?php echo date('d M Y H:i', $i['due_date_product']); ?> <?php if ($i['due_date_product'] > time()) {
+																												echo '<span class="badge badge-success">Active</span>';
+																											} else {
+																												echo '<span class="badge badge-danger">Inactive</span>';
+																											}; ?></td>
 											<td>
 												<!-- <a href="<?php echo base_url() . 'dashboard/print_thermal/' . $i['id'] ?>" target="_blank" class="btn btn-outline-warning">
 													<i class="fas fa-print"></i>

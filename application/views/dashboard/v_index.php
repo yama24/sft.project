@@ -17,18 +17,18 @@
 				</div><!-- /.container-fluid -->
 			</section>
 			<!-- <?php
-			if (isset($_GET['alert'])) {
-				if ($_GET['alert'] == "fail") {
-					echo "<div class='alert alert-danger font-weight-bold text-center'>Maaf! Mohon gunakan email atau nomor handphone yang berbeda.</div>";
-				} else if ($_GET['alert'] == "add") {
-					echo "<div class='alert alert-success font-weight-bold text-center'>Data berhasil diinput!</div>";
-				} else if ($_GET['alert'] == "update") {
-					echo "<div class='alert alert-warning font-weight-bold text-center'>Data berhasil diupdate!</div>";
-				} else if ($_GET['alert'] == "delete") {
-					echo "<div class='alert alert-danger font-weight-bold text-center'>Data berhasil dihapus!</div>";
-				}
-			}
-			?> -->
+					if (isset($_GET['alert'])) {
+						if ($_GET['alert'] == "fail") {
+							echo "<div class='alert alert-danger font-weight-bold text-center'>Maaf! Mohon gunakan email atau nomor handphone yang berbeda.</div>";
+						} else if ($_GET['alert'] == "add") {
+							echo "<div class='alert alert-success font-weight-bold text-center'>Data berhasil diinput!</div>";
+						} else if ($_GET['alert'] == "update") {
+							echo "<div class='alert alert-warning font-weight-bold text-center'>Data berhasil diupdate!</div>";
+						} else if ($_GET['alert'] == "delete") {
+							echo "<div class='alert alert-danger font-weight-bold text-center'>Data berhasil dihapus!</div>";
+						}
+					}
+					?> -->
 
 			<?php if ($this->session->flashdata('add')) : ?>
 				<div class='alert alert-success font-weight-bold text-center'><?= $this->session->flashdata('add'); ?></div>
@@ -50,7 +50,7 @@
 							<i class="fas fa-print"></i>
 								Print Thermal
 							</a> -->
-							<button data-toggle="modal" data-target="#modal-tambah" style="float: right;" class="btn btn-outline-success">
+							<button data-toggle="modal" data-target="#modal-tambah" style="float: right;" class="btn btn-outline-primary">
 								New Data
 							</button>
 						</div>

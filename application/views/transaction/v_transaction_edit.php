@@ -50,14 +50,18 @@
 							<i class="fas fa-print"></i>
 								Print Thermal
 							</a> -->
+							<h3><?= $label['transaction_key_label']; ?></h3>
+
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
 							<!-- <?php echo form_open_multipart('transaction/new'); ?> -->
-							<form action="<?= base_url('transaction/new') ?>" method="POST">
+							<form action="<?= base_url('transaction/edit') ?>" method="POST">
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
+											<input type="hidden" name="key" value="<?= $label['transaction_key_label']; ?>">
+											<input type="hidden" name="date" value="<?= $label['date_int']; ?>">
 											<label for="pengirim">Pengirim</label>
 											<input type="text" class="form-control" placeholder="Isi dengan nama pengirim" name="pengirim" id="pengirim" value="<?= $label['sender']; ?>">
 											<?= form_error('pengirim', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -91,48 +95,32 @@
 									</div>
 									<div class="col-lg-6">
 										<label>Pilihan Produk</label> <br>
-										<div class="control-group after-add-more">
-											<div class="row">
-												<div class="col-lg-8">
-													<div class="form-group">
-														<select name="produk[]" class="form-control" style="width: 100%;">
-															<?php foreach ($product as $p) : ?>
-																<option value="<?= $p['id']; ?>"><?= $p['nama_product']; ?></option>
-															<?php endforeach ?>
-														</select>
-													</div>
-												</div>
-												<div class="col-lg-2">
-													<input type="number" class="form-control" placeholder="Jumlah" name="jumlah[]" id="jumlah[]">
-												</div>
-												<div class="col-lg-2">
-													<button type="button" class="btn btn-success add-more"><i class="nav-icon fas fa-plus"></i></button>
-												</div>
+										<?php $attr = "hidden disabled"; ?>
+										<?php foreach ($allProduct as $p) : ?>
+											<div class="form-check mx-3 my-1" style="float:left; width: 200px;">
+												<input class="form-check-input" name="produk[]" type="checkbox" value="<?= $p['id'] ?>" onchange="this.parentElement.lastElementChild.toggleAttribute('hidden'); this.parentElement.lastElementChild.toggleAttribute('disabled')" id="defaultCheck<?= $p['id'] ?>" <?php foreach ($products as $pr) {
+																																																																														if ($pr['id'] == $p['id']) {
+																																																																															echo "checked";
+																																																																														}
+																																																																													}; ?>>
+												<label class="form-check-label" for="defaultCheck<?= $p['id'] ?>">
+													<img class="img-thumbnail" src="<?= base_url('assets/dist/img/product/') . $p['gambar_product']; ?>">
+													<br>
+													<?= $p['nama_product'] ?></label>
+												<input class="form-control" type="number" name="jumlah[]" id="jumlah" placeholder="jumlah" <?php
+																																			foreach ($transactionItems as $ti) {
+																																				if ($ti['item'] == $p['id']) {
+																																					echo 'value="' . $ti['amount'] . '"';
+																																				}
+																																			}
+																																			foreach ($products as $pr) {
+																																				if ($pr['id'] == $p['id']) {
+																																					// echo 'value="' . $pr['id'];
+																																					$attr = "";
+																																				}
+																																			} ?> <?= $attr; ?>>
 											</div>
-										</div>
-
-										<div class="copy invisible">
-											<div class="control-group">
-												<div class="row">
-													<div class="col-lg-8">
-														<div class="form-group">
-															<select name="produk[]" id="produk" class="form-control" style="width: 100%;" disabled>
-																<?php foreach ($product as $p) : ?>
-																	<option value="<?= $p['id']; ?>"><?= $p['nama_product']; ?></option>
-																<?php endforeach ?>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-2">
-														<input type="number" class="form-control" placeholder="Jumlah" name="jumlah[]" id="jumlah" disabled>
-													</div>
-													<div class="col-lg-2">
-														<button type="button" class="btn btn-danger remove"><i class="nav-icon fas fa-times"></i></button>
-													</div>
-												</div>
-											</div>
-										</div>
-
+										<?php endforeach ?>
 									</div>
 								</div>
 								<div class="modal-footer">

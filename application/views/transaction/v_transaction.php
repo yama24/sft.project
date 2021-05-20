@@ -53,7 +53,7 @@
 							<!-- <button data-toggle="modal" data-target="#modal-tambah" style="float: right;" class="btn btn-outline-success">
 							New Data
 							</button> -->
-							<a href="<?= base_url('transaction/new') ?>" class="btn btn-outline-success" style="float: right;">New Product</a>
+							<a href="<?= base_url('transaction/new') ?>" class="btn btn-outline-primary" style="float: right;">New Transaction</a>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
@@ -82,10 +82,10 @@
 											<td><?= $i['receiver']; ?></td>
 											<td><?= $i['courier']; ?></td>
 											<td>
-												<a href="<?= base_url('transaction/show/') . $i['id'] ?>" class="btn btn-outline-info">
+												<a href="<?= base_url('transaction/show/') . $i['transaction_key_label'] ?>" class="btn btn-outline-info">
 													<i class="fas fa-eye"></i>
 												</a>
-												<a href="<?= base_url('transaction/edit/') . $i['id'] ?>" class="btn btn-outline-success">
+												<a href="<?= base_url('transaction/edit/') . $i['transaction_key_label'] ?>" class="btn btn-outline-success">
 													<i class="fas fa-edit"></i>
 												</a>
 												<button data-toggle="modal" data-target="#modal-hapus<?php echo $i['id']; ?>" class="btn btn-outline-danger">
@@ -127,13 +127,12 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<form role="form" method="post" action="<?php echo base_url('product/delete/' . $i['id']) ?>">
+						<form role="form" method="post" action="<?php echo base_url('transaction/delete/' . $i['transaction_key_label']) ?>">
 							<div class="modal-body">
 								<div class="card-body">
 									<div class="form-group">
-										<h5>Apakah anda ingin menghapus product :</h5>
-										<h3><?php echo $i['nama_product']; ?></h3>
-										<img src="<?= base_url('assets/dist/img/product/' . $i['gambar_product']) ?>" width="200px" alt="" srcset="">
+										<h5>Apakah anda ingin menghapus transaksi :</h5>
+										<h3><?php echo $i['transaction_key_label']; ?></h3>
 									</div>
 								</div>
 							</div>

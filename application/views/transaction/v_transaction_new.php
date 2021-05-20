@@ -91,7 +91,7 @@
 									</div>
 									<div class="col-lg-6">
 										<label>Pilihan Produk</label> <br>
-										<div class="control-group after-add-more">
+										<!-- <div class="control-group after-add-more">
 											<div class="row">
 												<div class="col-lg-8">
 													<div class="form-group">
@@ -109,9 +109,9 @@
 													<button type="button" class="btn btn-success add-more"><i class="nav-icon fas fa-plus"></i></button>
 												</div>
 											</div>
-										</div>
+										</div> -->
 
-										<div class="copy invisible">
+										<!-- <div class="copy invisible">
 											<div class="control-group">
 												<div class="row">
 													<div class="col-lg-8">
@@ -131,8 +131,17 @@
 													</div>
 												</div>
 											</div>
-										</div>
-
+										</div> -->
+										<?php foreach ($product as $p) : ?>
+											<div class="form-check mx-3 my-1" style="float:left; width: 200px;">
+												<input class="form-check-input" name="produk[]" type="checkbox" value="<?= $p['id'] ?>" onchange="this.parentElement.lastElementChild.toggleAttribute('hidden'); this.parentElement.lastElementChild.toggleAttribute('disabled')" id="defaultCheck<?= $p['id'] ?>">
+												<label class="form-check-label" for="defaultCheck<?= $p['id'] ?>">
+													<img class="img-thumbnail" src="<?= base_url('assets/dist/img/product/') . $p['gambar_product']; ?>">
+													<br>
+													<?= $p['nama_product'] ?></label>
+												<input class="form-control" type="number" name="jumlah[]" id="jumlah" placeholder="jumlah" disabled hidden>
+											</div>
+										<?php endforeach ?>
 									</div>
 								</div>
 								<div class="modal-footer">
