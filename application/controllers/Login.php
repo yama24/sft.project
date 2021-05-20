@@ -27,23 +27,32 @@ class Login extends CI_Controller
 				'pengguna_password' => md5($password),
 				'pengguna_status' => 1
 			);
-			$this->load->model('m_data');
 			// cek kesesuaian login pada table pengguna
-			$cek = $this->m_data->cek_login('pengguna', $where)->num_rows();
+			$cek = $this->db->get_where('pengguna', $where)->row_array();
 			// cek jika login benar
 			if ($cek > 0) {
 				// ambil data pengguna yang melakukan login
-				$data = $this->m_data->cek_login('pengguna', $where)->row();
+				$data = $this->db->get_where('pengguna', $where)->row_array();
 				// buat session untuk pengguna yang berhasil login
+				// $data_session = array(
+				// 	'id' => $data->pengguna_id,
+				// 	'username' => $data->pengguna_username,
+				// 	'name' => $data->pengguna_nama,
+				// 	'email' => $data->pengguna_email,
+				// 	'photo' => $data->pengguna_foto,
+				// 	'level' => $data->pengguna_level,
+				// 	'status' => 'telah_login'
+				// );
 				$data_session = array(
-					'id' => $data->pengguna_id,
-					'username' => $data->pengguna_username,
-					'name' => $data->pengguna_nama,
-					'email' => $data->pengguna_email,
-					'photo' => $data->pengguna_foto,
-					'level' => $data->pengguna_level,
+					'id' => $data['pengguna_id'],
+					'username' => $data['pengguna_username'],
+					'name' => $data['pengguna_nama'],
+					'email' => $data['pengguna_email'],
+					'photo' => $data['pengguna_foto'],
+					'level' => $data['pengguna_level'],
 					'status' => 'telah_login'
 				);
+
 				$this->session->set_userdata($data_session);
 				// alihkan halaman ke halaman dashboard pengguna
 				redirect(base_url() . 'dashboard');

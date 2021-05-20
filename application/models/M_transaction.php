@@ -67,7 +67,7 @@ class M_transaction extends CI_Model
 		$kurir = $this->input->post('kurir');
 		$alamat = $this->input->post('alamat');
 		$date = time();
-		$key = "sft" . $date . "project";
+		$key = "SFT" . $date;
 
 		$idProduk = $this->input->post('produk');
 		$jumlah = $this->input->post('jumlah');

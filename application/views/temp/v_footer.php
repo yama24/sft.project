@@ -27,9 +27,9 @@
 <script src="<?php echo base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/ckeditor/ckeditor.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/plugins/ckeditor/ckeditor.js"></script> -->
 <!-- Select2 -->
-<script src="<?php echo base_url() ?>assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/plugins/select2/js/select2.full.min.js"></script> -->
 <script>
   $('.custom-file-input').on('change', function() {
     let fileName = $(this).val().split('\\').pop();
@@ -66,7 +66,7 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
   });
 </script>
 
-<script>
+<!-- <script>
   $(function() {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -76,7 +76,7 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
       theme: 'bootstrap4'
     })
   })
-</script>
+</script> -->
 
 <script>
   $(function() {
@@ -96,10 +96,10 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
   });
 </script>
 <!-- Summernote -->
-<script src="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
 
-<script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<script>
+<script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script> -->
+<!-- <script>
   $(function() {
     // Summernote
     $('#editor').summernote()
@@ -112,8 +112,8 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
   })
-</script>
-<script type="text/javascript">
+</script> -->
+<!-- <script type="text/javascript">
   $(function() {
     const Toast = Swal.mixin({
       toast: true,
@@ -266,7 +266,7 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
       })
     });
   });
-</script>
+</script> -->
 </body>
 
 </html>

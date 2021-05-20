@@ -2,7 +2,7 @@
 <html>
 <?php
 $id_user = $this->session->userdata('id');
-$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+$user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array();
 ?>
 
 <head>
@@ -25,14 +25,14 @@ $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")-
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/adminlte.min.css">
 	<!-- summernote -->
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.css"> -->
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 	<!-- Select2 -->
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2/css/select2.min.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2/css/select2.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -52,15 +52,15 @@ $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")-
 				<!-- Notifications Dropdown Menu -->
 				<li class="nav-item dropdown">
 					<a class="nav-link" data-toggle="dropdown" href="#">
-						<b style="text-transform: capitalize;"><?php echo $user->pengguna_level ?></b>
+						<b style="text-transform: capitalize;"><?php echo $user['pengguna_level'] ?></b>
 					</a>
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<div class="dropdown-item bg-secondary">
 							<center><img src="<?php echo base_url(); ?>assets/dist/img/yama.jpg" class="img-circle" alt="User Image" width="80"></center>
 						</div>
 						<div class="dropdown-item bg-secondary">
-							<center style="text-transform: capitalize;"><?php echo $user->pengguna_nama ?></center>
-							<center><small><?php echo $user->pengguna_email ?></small></center>
+							<center style="text-transform: capitalize;"><?php echo $user['pengguna_nama'] ?></center>
+							<center><small><?php echo $user['pengguna_email'] ?></small></center>
 						</div>
 						<!-- <div class="dropdown-divider"></div> -->
 						<div class="row" style="margin: 10px;">
@@ -98,7 +98,7 @@ $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")-
 						<img src="<?php echo base_url(); ?>assets/dist/img/yama.jpg" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block" style="text-transform: capitalize;"><?php echo $user->pengguna_nama; ?><small> (<?php echo $user->pengguna_level; ?>)</small></a>
+						<a href="#" class="d-block" style="text-transform: capitalize;"><?php echo $user['pengguna_nama']; ?><small> (<?php echo $user['pengguna_level']; ?>)</small></a>
 					</div>
 				</div>
 
@@ -116,7 +116,7 @@ $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")-
 								</p>
 							</a>
 						</li>
-						<!-- <li class="nav-header">CONTENT</li> -->
+						<li class="nav-header">CONTENT</li>
 						<!-- //cek jika yang login adalah admin -->
 						<!-- <li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard/transaksi' ?>" class="nav-link <?php if ($page == "Transaksi") {
@@ -172,7 +172,19 @@ $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")-
 							</ul>
 						</li> -->
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'transaction' ?>" class="nav-link">
+							<a href="<?php echo base_url() . 'label' ?>" class="nav-link <?php if ($page == "Label") {
+																								echo "active";
+																							} ?>">
+								<i class="nav-icon fas fa-tags"></i>
+								<p>
+									Label
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url() . 'transaction' ?>" class="nav-link <?php if ($page == "Transaction") {
+																									echo "active";
+																								} ?>">
 								<i class="nav-icon fas fa-cart-plus"></i>
 								<p>
 									Transaction
@@ -180,7 +192,9 @@ $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")-
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'product' ?>" class="nav-link">
+							<a href="<?php echo base_url() . 'product' ?>" class="nav-link <?php if ($page == "Product") {
+																								echo "active";
+																							} ?>">
 								<i class="nav-icon fas fa-shopping-bag"></i>
 								<p>
 									Product

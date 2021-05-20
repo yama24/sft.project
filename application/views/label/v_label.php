@@ -51,7 +51,7 @@
 								Print Thermal
 							</a> -->
 							<button data-toggle="modal" data-target="#modal-tambah" style="float: right;" class="btn btn-outline-primary">
-								New Data
+								New Label
 							</button>
 						</div>
 						<!-- /.card-header -->
@@ -74,26 +74,26 @@
 								<tbody>
 									<?php
 									$no = 1;
-									foreach (array_reverse($index) as $i) {
+									foreach ($index as $i) {
 									?>
 										<tr>
 											<td><?php echo $no++; ?></td>
-											<td><?php echo date('d M y H:i:s', strtotime($i->date)); ?></td>
-											<td><?php echo ucwords(strtolower($i->sender)); ?></td>
-											<td><?php echo "0" . $i->num_sender; ?></td>
-											<td><?php echo ucwords(strtolower($i->receiver)); ?></td>
-											<td><?php echo "0" . $i->num_receiver; ?></td>
-											<td><?php echo $i->address_receiver; ?></td>
-											<td><?php echo $i->courier; ?></td>
-											<td><?php echo $i->order; ?></td>
+											<td><?php echo date('d M y H:i:s', strtotime($i['date'])); ?></td>
+											<td><?php echo ucwords(strtolower($i['sender'])); ?></td>
+											<td><?php echo "0" . $i['num_sender']; ?></td>
+											<td><?php echo ucwords(strtolower($i['receiver'])); ?></td>
+											<td><?php echo "0" . $i['num_receiver']; ?></td>
+											<td><?php echo $i['address_receiver']; ?></td>
+											<td><?php echo $i['courier']; ?></td>
+											<td><?php echo $i['order']; ?></td>
 											<td>
-												<a href="<?php echo base_url() . 'dashboard/print_thermal/' . $i->id ?>" target="_blank" class="btn btn-outline-warning">
+												<a href="<?php echo base_url() . 'label/print_thermal/' . $i['id'] ?>" target="_blank" class="btn btn-outline-warning">
 													<i class="fas fa-print"></i>
 												</a>
-												<button data-toggle="modal" data-target="#modal-edit<?php echo $i->id; ?>" class="btn btn-outline-success">
+												<button data-toggle="modal" data-target="#modal-edit<?php echo $i['id']; ?>" class="btn btn-outline-success">
 													<i class="fas fa-edit"></i>
 												</button>
-												<button data-toggle="modal" data-target="#modal-hapus<?php echo $i->id; ?>" class="btn btn-outline-danger">
+												<button data-toggle="modal" data-target="#modal-hapus<?php echo $i['id']; ?>" class="btn btn-outline-danger">
 													<i class="fas fa-trash"></i>
 												</button>
 											</td>
@@ -128,12 +128,12 @@
 			<div class="modal-dialog modal-xl">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Tambah Data</h4>
+						<h4 class="modal-title">New Label</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form role="form" method="post" action="<?php echo base_url('dashboard/tambah') ?>">
+					<form role="form" method="post" action="<?php echo base_url('label/new') ?>">
 						<div class="modal-body">
 							<div class="card-body">
 								<div class="form-group">
@@ -175,46 +175,46 @@
 			</div>
 		</div>
 		<?php foreach ($index as $i) { ?>
-			<div class="modal fade" id="modal-edit<?php echo $i->id; ?>">
+			<div class="modal fade" id="modal-edit<?php echo $i['id']; ?>">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Edit Data</h4>
+							<h4 class="modal-title">Edit Label</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<form role="form" method="post" action="<?php echo base_url('dashboard/edit') ?>">
+						<form role="form" method="post" action="<?php echo base_url('label/edit') ?>">
 							<div class="modal-body">
 								<div class="card-body">
 									<div class="form-group">
 										<label>Pengirim</label>
-										<input type="hidden" name="id" value="<?php echo $i->id; ?>" id="">
-										<input type="text" class="form-control" value="<?php echo $i->sender; ?>" placeholder="Isi dengan nama/toko" name="sender" required>
+										<input type="hidden" name="id" value="<?php echo $i['id']; ?>" id="">
+										<input type="text" class="form-control" value="<?php echo $i['sender']; ?>" placeholder="Isi dengan nama/toko" name="sender" required>
 									</div>
 									<div class="form-group">
 										<label>No. Hp Pengirim</label>
-										<input type="tel" class="form-control" value="0<?php echo $i->num_sender; ?>" placeholder="cth: 082161821282" name="num_sender" pattern="[0]{1}[8]{1}[0-9].{8,}" required>
+										<input type="tel" class="form-control" value="0<?php echo $i['num_sender']; ?>" placeholder="cth: 082161821282" name="num_sender" pattern="[0]{1}[8]{1}[0-9].{8,}" required>
 									</div>
 									<div class="form-group">
 										<label>Penerima</label>
-										<input type="text" class="form-control" value="<?php echo $i->receiver; ?>" placeholder="Isi dengan nama" name="receiver" required>
+										<input type="text" class="form-control" value="<?php echo $i['receiver']; ?>" placeholder="Isi dengan nama" name="receiver" required>
 									</div>
 									<div class="form-group">
 										<label>No. Hp Penerima</label>
-										<input type="tel" class="form-control" value="0<?php echo $i->num_receiver; ?>" placeholder="cth: 082161821282" name="num_receiver" pattern="[0]{1}[8]{1}[0-9].{8,}" required>
+										<input type="tel" class="form-control" value="0<?php echo $i['num_receiver']; ?>" placeholder="cth: 082161821282" name="num_receiver" pattern="[0]{1}[8]{1}[0-9].{8,}" required>
 									</div>
 									<div class="form-group">
 										<label>Alamat Penerima</label>
-										<textarea name="address_receiver" class="form-control" required><?php echo $i->address_receiver; ?></textarea>
+										<textarea name="address_receiver" class="form-control" required><?php echo $i['address_receiver']; ?></textarea>
 									</div>
 									<div class="form-group">
 										<label>Kurir</label>
-										<input type="text" class="form-control" value="<?php echo $i->courier; ?>" placeholder="Isi dengan kurir" name="courier" required>
+										<input type="text" class="form-control" value="<?php echo $i['courier']; ?>" placeholder="Isi dengan kurir" name="courier" required>
 									</div>
 									<div class="form-group">
 										<label>Pesanan</label>
-										<textarea name="order" class="form-control" required><?php echo $i->order; ?></textarea>
+										<textarea name="order" class="form-control" required><?php echo $i['order']; ?></textarea>
 									</div>
 								</div>
 							</div>
@@ -227,24 +227,24 @@
 				</div>
 			</div>
 
-			<div class="modal fade" id="modal-hapus<?php echo $i->id; ?>">
+			<div class="modal fade" id="modal-hapus<?php echo $i['id']; ?>">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Hapus Data</h4>
+							<h4 class="modal-title">Delete Label</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<form role="form" method="post" action="<?php echo base_url('dashboard/hapus/' . $i->id) ?>">
+						<form role="form" method="post" action="<?php echo base_url('label/delete/' . $i['id']) ?>">
 							<div class="modal-body">
 								<div class="card-body">
 									<div class="form-group">
-										<h5>Apakah anda ingin menghapus data :</h5>
+										<h5>Apakah anda ingin menghapus Label :</h5>
 										<p>pengirim</p>
-										<h3><?php echo $i->sender; ?></h3>
+										<h3><?php echo $i['sender']; ?></h3>
 										<p>penerima</p>
-										<h3><?php echo $i->receiver; ?></h3>
+										<h3><?php echo $i['receiver']; ?></h3>
 									</div>
 								</div>
 							</div>
