@@ -37,6 +37,23 @@ class M_transaction extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get('product')->result_array();
 	}
+	public function getActiveProduct()
+	{
+		$this->db->order_by('id', 'DESC');
+		$this->db->where('product.due_date_product >', time());
+		return $this->db->get('product')->result_array();
+	}
+	public function getInactiveCheckedProduct($arrayProduct)
+	{
+		$total = count($arrayProduct);
+		$inactiveCheckedProduct = [];
+		for ($i = 0; $i < $total; $i++) {
+			if ($arrayProduct[$i]['due_date_product'] < time()) {
+				array_push($inactiveCheckedProduct, $arrayProduct[$i]);
+			}
+		}
+		return $inactiveCheckedProduct;
+	}
 	public function getProductById($id)
 	{
 		return $this->db->get_where('product', ['id' => $id])->row_array();

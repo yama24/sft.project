@@ -28,7 +28,7 @@ class Transaction extends CI_Controller
     public function new()
     {
         $data['page'] = "New Transaction";
-        $data['product'] = $this->m_product->getActiveProduct();
+        $data['product'] = $this->m_transaction->getActiveProduct();
         $this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
         $this->form_validation->set_rules('hppengirim', 'No. Hp Pengirim', 'required|numeric');
         // $this->form_validation->set_rules('penerima', 'Penerima', 'required');
@@ -52,7 +52,7 @@ class Transaction extends CI_Controller
     {
         $data['page'] = "Edit Transaction";
         $data['label'] = $this->m_transaction->getLabelByKey();
-        $data['allProduct'] = $this->m_transaction->getAllProduct();
+        $data['activeProduct'] = $this->m_transaction->getActiveProduct();
         $data['transactionItems'] = $this->m_transaction->getTransactionByKey();
         $total = count($data['transactionItems']);
         $productId = [];
@@ -69,6 +69,13 @@ class Transaction extends CI_Controller
             $product = $this->m_transaction->getProductById($productId[$i]);
             array_push($data['products'], $product);
         }
+
+        $data['inactiveCheckedProduct'] = $this->m_transaction->getInactiveCheckedProduct($data['products']);
+
+        // var_dump($data['inactiveCheckedProduct']);
+        // echo "asdasdasd<br>";
+        // var_dump($data['activeProduct']);
+        // die;
 
         $this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
         $this->form_validation->set_rules('hppengirim', 'No. Hp Pengirim', 'required|numeric');
