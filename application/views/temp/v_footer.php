@@ -47,6 +47,25 @@
     };
   };
 </script>
+<!-- fungsi javascript untuk menampilkan form dinamis  -->
+<!-- penjelasan :
+saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".add-more").click(function() {
+      var html = $(".copy").html();
+      $(".after-add-more").after(html);
+      document.querySelector('#produk').toggleAttribute('disabled');
+      document.querySelector('#jumlah').toggleAttribute('disabled');
+    });
+
+    // saat tombol remove dklik control group akan dihapus 
+    $("body").on("click", ".remove", function() {
+      $(this).parents(".control-group").remove();
+    });
+  });
+</script>
+
 <script>
   $(function() {
     //Initialize Select2 Elements
