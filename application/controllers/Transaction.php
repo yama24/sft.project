@@ -75,7 +75,7 @@ class Transaction extends CI_Controller
             $this->load->view('templ/v_footer');
         } else {
             $this->m_transaction->editTransaction();
-            $this->session->set_flashdata('add', 'Transaksi berhasil diedit!');
+            $this->session->set_flashdata('update', 'Transaksi berhasil diedit!');
             redirect('transaction');
         }
     }

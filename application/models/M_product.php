@@ -64,7 +64,7 @@ class M_product extends CI_Model
 		];
 		$this->db->where('id', $id);
 		$this->db->update('product', $data);
-		$this->session->set_flashdata('add', 'Produk berhasil diedit!');
+		$this->session->set_flashdata('update', 'Produk berhasil diedit!');
 		redirect('product');
 	}
 	public function deleteProduct($id)
