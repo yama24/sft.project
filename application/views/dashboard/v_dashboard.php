@@ -116,7 +116,7 @@
                                         </span>
                                     <?php } else { ?>
                                         <span class="text-danger">
-                                            <i class="fas fa-arrow-up"></i> <?= number_format($percent, 0, ",", "."); ?>%
+                                            <i class="fas fa-arrow-down"></i> <?= number_format($percent, 0, ",", "."); ?>%
                                         </span>
                                     <?php  } ?>
                                     <span class="text-muted">dari bulan lalu</span>
