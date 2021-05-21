@@ -21,6 +21,7 @@ class M_label extends CI_Model
 		$courier = $this->input->post('courier');
 		$order = $this->input->post('order');
 		$date = date('Y-m-d H:i:s');
+		$time = time();
 
 		$data = array(
 			'sender' => $sender,
@@ -30,7 +31,11 @@ class M_label extends CI_Model
 			'address_receiver' => $address_receiver,
 			'courier' => $courier,
 			'order' => $order,
-			'date' => $date,
+			'date_datetime' => $date,
+			'date_int' => $time,
+			'date' => date('j', $time),
+			'month' => date('n', $time),
+			'year' => date('Y', $time),
 		);
 
 		$this->db->insert('label', $data);
@@ -62,7 +67,6 @@ class M_label extends CI_Model
 		$this->db->where('id', $id);
 		$this->db->delete('label');
 	}
-
 	public function getLinksBySlug($slug)
 	{
 		$this->db->select("

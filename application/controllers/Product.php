@@ -20,9 +20,9 @@ class Product extends CI_Controller
         $data['index'] = $this->m_product->getAllProduct();
 
         $data['page'] = "Product";
-        $this->load->view('temp/v_header', $data);
+        $this->load->view('templ/v_header', $data);
         $this->load->view('product/v_product', $data);
-        $this->load->view('temp/v_footer');
+        $this->load->view('templ/v_footer');
     }
     public function new()
     {
@@ -38,9 +38,9 @@ class Product extends CI_Controller
         }
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('temp/v_header', $data);
+            $this->load->view('templ/v_header', $data);
             $this->load->view('product/v_product_new', $data);
-            $this->load->view('temp/v_footer');
+            $this->load->view('templ/v_footer');
         } else {
 
             $upload_image = $_FILES['gambar']['name'];
@@ -50,15 +50,15 @@ class Product extends CI_Controller
                     $this->m_product->insertProduct();
                 } else {
                     $this->session->set_flashdata('fail', 'Format atau ukuran gambar tidak sesuai!');
-                    $this->load->view('temp/v_header', $data);
+                    $this->load->view('templ/v_header', $data);
                     $this->load->view('product/v_product_new', $data);
-                    $this->load->view('temp/v_footer');
+                    $this->load->view('templ/v_footer');
                 }
             } else {
                 $this->session->set_flashdata('fail', 'Gambar harus diisi!');
-                $this->load->view('temp/v_header', $data);
+                $this->load->view('templ/v_header', $data);
                 $this->load->view('product/v_product_new', $data);
-                $this->load->view('temp/v_footer');
+                $this->load->view('templ/v_footer');
             }
         }
     }
@@ -74,9 +74,9 @@ class Product extends CI_Controller
         $this->form_validation->set_rules('duedate', 'Due Date', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('temp/v_header', $data);
+            $this->load->view('templ/v_header', $data);
             $this->load->view('product/v_product_edit', $data);
-            $this->load->view('temp/v_footer');
+            $this->load->view('templ/v_footer');
         } else {
 
             $upload_image = $_FILES['gambar']['name'];

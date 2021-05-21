@@ -78,7 +78,7 @@
 									?>
 										<tr>
 											<td><?php echo $no++; ?></td>
-											<td><?php echo date('d M y H:i:s', strtotime($i['date'])); ?></td>
+											<td><?php echo date('d M y H:i:s', strtotime($i['date_datetime'])); ?></td>
 											<td><?php echo ucwords(strtolower($i['sender'])); ?></td>
 											<td><?php echo "0" . $i['num_sender']; ?></td>
 											<td><?php echo ucwords(strtolower($i['receiver'])); ?></td>

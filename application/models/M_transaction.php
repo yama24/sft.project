@@ -84,6 +84,9 @@ class M_transaction extends CI_Model
 			'address_receiver' => $alamat,
 			'courier' => $kurir,
 			'date_int' => $date,
+			'date' => date('j', $date),
+			'month' => date('n', $date),
+			'year' => date('Y', $date),
 		];
 		$this->db->insert('label', $dataLabel);
 
@@ -91,13 +94,18 @@ class M_transaction extends CI_Model
 			$id = $idProduk[$i];
 			$jml = $jumlah[$i];
 			$harga = $this->db->get_where('product', ['id' => $id])->row_array();
-			$price = $harga['jual_product'] * $jml;
+			$price_buy = $harga['modal_product'] * $jml;
+			$price_sell = $harga['jual_product'] * $jml;
 			$dataTransaction = [
 				'transaction_key' => $key,
 				'item' => $id,
 				'amount' => $jumlah[$i],
-				'price' => $price,
-				'date' => $date,
+				'price_buy' => $price_buy,
+				'price_sell' => $price_sell,
+				'date_int' => $date,
+				'date' => date('j', $date),
+				'month' => date('n', $date),
+				'year' => date('Y', $date),
 			];
 			$this->db->insert('transaction', $dataTransaction);
 		}
@@ -137,13 +145,18 @@ class M_transaction extends CI_Model
 			$id = $idProduk[$i];
 			$jml = $jumlah[$i];
 			$harga = $this->db->get_where('product', ['id' => $id])->row_array();
-			$price = $harga['jual_product'] * $jml;
+			$price_buy = $harga['modal_product'] * $jml;
+			$price_sell = $harga['jual_product'] * $jml;
 			$dataTransaction = [
 				'transaction_key' => $key,
 				'item' => $id,
 				'amount' => $jumlah[$i],
-				'price' => $price,
-				'date' => $date,
+				'price_buy' => $price_buy,
+				'price_sell' => $price_sell,
+				'date_int' => $date,
+				'date' => date('j', $date),
+				'month' => date('n', $date),
+				'year' => date('Y', $date),
 			];
 
 			$this->db->insert('transaction', $dataTransaction);

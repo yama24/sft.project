@@ -16,11 +16,16 @@ class Dashboard extends CI_Controller
 	}
 	public function index()
 	{
-
+		$this->load->model('m_dashboard');
+		$data['modalChart'] = $this->m_dashboard->dashboardChartModal();
+		$data['jualChart'] = $this->m_dashboard->dashboardChartJual();
 		$data['page'] = "Dashboard";
-		$this->load->view('temp/v_header', $data);
-		$this->load->view('dashboard/v_dashboard');
-		$this->load->view('temp/v_footer', $data);
+		$data['monthChart'] = $this->m_dashboard->getMonth();
+		// var_dump($data['modalChart']);
+		// die;
+		$this->load->view('templ/v_header', $data);
+		$this->load->view('dashboard/v_dashboard', $data);
+		$this->load->view('templ/v_footer', $data);
 	}
 
 	public function notfound()

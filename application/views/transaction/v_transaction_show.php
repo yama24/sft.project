@@ -112,7 +112,7 @@
 														<td><?= $t['amount']; ?></td>
 														<td><img src="<?= base_url('assets/dist/img/product/') . $t['gambar_product'] ?>" height="50px" class="mx-1" alt=""> <?= $t['nama_product']; ?></td>
 														<td><?= "Rp. " . number_format($t['jual_product'], 0, ",", "."); ?></td>
-														<td><?= "Rp. " . number_format($t['price'], 0, ",", "."); ?></td>
+														<td><?= "Rp. " . number_format($t['price_sell'], 0, ",", "."); ?></td>
 													</tr>
 												<?php endforeach ?>
 											</tbody>
@@ -142,7 +142,7 @@
 									<?php
 									$sumPrice = [];
 									for ($i = 0; $i < count($transaction); $i++) {
-										array_push($sumPrice, $transaction[$i]['price']);
+										array_push($sumPrice, $transaction[$i]['price_sell']);
 									}
 									?>
 									<div class="col-6">

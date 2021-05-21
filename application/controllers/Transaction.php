@@ -21,9 +21,9 @@ class Transaction extends CI_Controller
         $data['index'] = $this->m_transaction->getAllTransactionLabel();
 
         $data['page'] = "Transaction";
-        $this->load->view('temp/v_header', $data);
+        $this->load->view('templ/v_header', $data);
         $this->load->view('transaction/v_transaction', $data);
-        $this->load->view('temp/v_footer');
+        $this->load->view('templ/v_footer');
     }
     public function new()
     {
@@ -39,9 +39,9 @@ class Transaction extends CI_Controller
         // $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('temp/v_header', $data);
+            $this->load->view('templ/v_header', $data);
             $this->load->view('transaction/v_transaction_new', $data);
-            $this->load->view('temp/v_footer');
+            $this->load->view('templ/v_footer');
         } else {
             $this->m_transaction->insertTransaction();
             $this->session->set_flashdata('add', 'Transaksi berhasil diinput!');
@@ -81,9 +81,9 @@ class Transaction extends CI_Controller
         $this->form_validation->set_rules('hppengirim', 'No. Hp Pengirim', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('temp/v_header', $data);
+            $this->load->view('templ/v_header', $data);
             $this->load->view('transaction/v_transaction_edit', $data);
-            $this->load->view('temp/v_footer');
+            $this->load->view('templ/v_footer');
         } else {
             $this->m_transaction->editTransaction();
             $this->session->set_flashdata('add', 'Transaksi berhasil diedit!');
@@ -102,8 +102,8 @@ class Transaction extends CI_Controller
         $data['label'] = $this->m_transaction->getLabelByKey();
         $data['transaction'] = $this->m_transaction->getTransactionProductByKey();
 
-        $this->load->view('temp/v_header', $data);
+        $this->load->view('templ/v_header', $data);
         $this->load->view('transaction/v_transaction_show', $data);
-        $this->load->view('temp/v_footer');
+        $this->load->view('templ/v_footer');
     }
 }
