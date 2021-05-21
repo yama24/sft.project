@@ -75,7 +75,32 @@
     }
   });
 </script>
+<script>
+  $(document).ready(function() {
+    $("#provinsi").change(function() {
+      var url = "<?php echo site_url('transaction/add_ajax_kab'); ?>/" + $(this).val();
+      $('#kabupaten').load(url);
+      return false;
+    })
 
+    $("#kabupaten").change(function() {
+      var url = "<?php echo site_url('transaction/add_ajax_kec'); ?>/" + $(this).val();
+      $('#kecamatan').load(url);
+      return false;
+    })
+
+    $("#kecamatan").change(function() {
+      var url = "<?php echo site_url('transaction/add_ajax_des'); ?>/" + $(this).val();
+      $('#desa').load(url);
+      return false;
+    })
+    $("#desa").change(function() {
+      var url = "<?php echo site_url('transaction/add_ajax_pos'); ?>/" + $(this).val();
+      $('#postalcode').load(url);
+      return false;
+    })
+  });
+</script>
 <script>
   $('.custom-file-input').on('change', function() {
     let fileName = $(this).val().split('\\').pop();

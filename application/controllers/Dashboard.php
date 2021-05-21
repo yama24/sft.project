@@ -17,6 +17,8 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$this->load->model('m_dashboard');
+		$data['product'] = $this->m_dashboard->getAllProduct();
+		$data['transaction'] = $this->m_dashboard->getAllTransaction();
 		$data['modalChart'] = $this->m_dashboard->dashboardChartModal();
 		$data['jualChart'] = $this->m_dashboard->dashboardChartJual();
 		$data['page'] = "Dashboard";

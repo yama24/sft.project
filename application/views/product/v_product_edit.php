@@ -101,7 +101,7 @@
 							</div>
 							<div class="modal-footer">
 								<a href="<?= base_url('product') ?>" class="btn btn-default">Close</a>
-								<button type="submit" class="btn btn-success">Add</button>
+								<button type="submit" class="btn btn-success">Edit</button>
 							</div>
 							</form>
 						</div>

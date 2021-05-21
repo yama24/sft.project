@@ -78,17 +78,30 @@
 										To
 										<address>
 											<strong><?= $label['receiver']; ?></strong><br>
-											<?= $label['address_receiver']; ?><br>
+											<?= $label['address_receiver_transaction'] . " " . "<strong>" .
+												ucwords(strtolower($village['name'])) . " " .
+												ucwords(strtolower($district['name'])) . " " .
+												ucwords(strtolower($regency['name']))  . " " .
+												ucwords(strtolower($province['name']))  . " " .
+												$postalcode['postal_code']; ?><br>
+											</strong>
 											Phone: <?= "0" . $label['num_receiver']; ?>
 										</address>
 									</div>
 									<!-- /.col -->
+									<?php
+									$sumWeight = [];
+									for ($i = 0; $i < count($transaction); $i++) {
+										array_push($sumWeight, $transaction[$i]['weight']);
+									}
+									?>
+
 									<div class="col-sm-4 invoice-col">
 										<b><?= $label['transaction_key_label']; ?></b><br>
 										<br>
 										<b>Courier:</b> <?= $label['courier']; ?><br>
-										<!-- <b>Payment Due:</b> 2/22/2014<br>
-										<b>Account:</b> 968-34567 -->
+										<b>Weight:</b> <?= number_format(array_sum($sumWeight), 0, ",", "."); ?> gr<br>
+										<!-- <b>Account:</b> 968-34567 -->
 									</div>
 									<!-- /.col -->
 								</div>
@@ -102,6 +115,7 @@
 												<tr>
 													<th>Qty</th>
 													<th>Product</th>
+													<th>Weight</th>
 													<th>Price</th>
 													<th>Subtotal</th>
 												</tr>
@@ -111,6 +125,7 @@
 													<tr>
 														<td><?= $t['amount']; ?></td>
 														<td><img src="<?= base_url('assets/dist/img/product/') . $t['gambar_product'] ?>" height="50px" class="mx-1" alt=""> <?= $t['nama_product']; ?></td>
+														<td><?= number_format($t['weight'], 0, ",", "."); ?> gr</td>
 														<td><?= "Rp. " . number_format($t['jual_product'], 0, ",", "."); ?></td>
 														<td><?= "Rp. " . number_format($t['price_sell'], 0, ",", "."); ?></td>
 													</tr>

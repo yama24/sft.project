@@ -78,68 +78,75 @@
 											<input type="tel" class="form-control" placeholder="Isi dengan No. Hp penerima" name="hppenerima" id="hppenerima" value="<?= set_value('hppenerima'); ?>">
 											<?= form_error('hppenerima', '<small class="text-danger pl-3">', '</small>'); ?>
 										</div>
-										<div class="form-group">
-											<label for="alamat">Alamat Penerima</label>
-											<textarea class="form-control" name="alamat" id="alamat"></textarea>
-											<?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-										</div>
-										<div class="form-group">
-											<label for="kurir">Kurir</label>
-											<input type="text" class="form-control" placeholder="Isi dengan nama kurir" name="kurir" id="kurir" value="<?= set_value('kurir'); ?>">
-											<?= form_error('kurir', '<small class="text-danger pl-3">', '</small>'); ?>
+										<label>Alamat Penerima</label>
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="input-group mb-3">
+													<select name="provinsi" class="form-control" id="provinsi">
+														<option> - Pilih Provinsi - </option>
+														<?php foreach ($provinces as $prov) {
+															echo '<option value="' . $prov['id'] . '">' . ucwords(strtolower($prov['name'])) . '</option>';
+														} ?>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<select name="kabupaten" class="form-control" id="kabupaten">
+														<option value=''>Kota/Kabupaten</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="input-group mb-3">
+													<select name="kecamatan" class="form-control" id="kecamatan">
+														<option value=''>Kecamatan</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<select name="desa" class="form-control" id="desa">
+														<option value=''>Desa/Kelurahan</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<select name="postalcode" class="form-control" id="postalcode">
+														<option value=''>KodePos</option>
+													</select>
+												</div>
+
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group">
+													<!-- <label for="alamat">Alamat Penerima</label> -->
+													<textarea class="form-control" name="alamat" id="alamat" placeholder="Detil alamat"></textarea>
+													<?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="kurir">Kurir</label>
+													<input type="text" class="form-control" placeholder="Isi dengan nama kurir" name="kurir" id="kurir" value="<?= set_value('kurir'); ?>">
+													<?= form_error('kurir', '<small class="text-danger pl-3">', '</small>'); ?>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="ongkir">Ongkir</label>
+													<input type="number" class="form-control" placeholder="Isi dengan ongkir" name="ongkir" id="ongkir" value="<?= set_value('ongkir'); ?>">
+													<?= form_error('ongkir', '<small class="text-danger pl-3">', '</small>'); ?>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<label>Pilihan Produk</label> <br>
-										<!-- <div class="control-group after-add-more">
-											<div class="row">
-												<div class="col-lg-8">
-													<div class="form-group">
-														<select name="produk[]" class="form-control" style="width: 100%;">
-															<?php foreach ($product as $p) : ?>
-																<option value="<?= $p['id']; ?>"><?= $p['nama_product']; ?></option>
-															<?php endforeach ?>
-														</select>
-													</div>
-												</div>
-												<div class="col-lg-2">
-													<input type="number" class="form-control" placeholder="Jumlah" name="jumlah[]" id="jumlah[]">
-												</div>
-												<div class="col-lg-2">
-													<button type="button" class="btn btn-success add-more"><i class="nav-icon fas fa-plus"></i></button>
-												</div>
-											</div>
-										</div> -->
-
-										<!-- <div class="copy invisible">
-											<div class="control-group">
-												<div class="row">
-													<div class="col-lg-8">
-														<div class="form-group">
-															<select name="produk[]" id="produk" class="form-control" style="width: 100%;" disabled>
-																<?php foreach ($product as $p) : ?>
-																	<option value="<?= $p['id']; ?>"><?= $p['nama_product']; ?></option>
-																<?php endforeach ?>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-2">
-														<input type="number" class="form-control" placeholder="Jumlah" name="jumlah[]" id="jumlah" disabled>
-													</div>
-													<div class="col-lg-2">
-														<button type="button" class="btn btn-danger remove"><i class="nav-icon fas fa-times"></i></button>
-													</div>
-												</div>
-											</div>
-										</div> -->
 										<?php foreach ($product as $p) : ?>
-											<div class="form-check mx-3 my-1" style="float:left; width: 200px;">
+											<div class="form-check mx-3 my-1" style="float:left; width: 40%;">
 												<input class="form-check-input" name="produk[]" type="checkbox" value="<?= $p['id'] ?>" onchange="this.parentElement.lastElementChild.toggleAttribute('hidden'); this.parentElement.lastElementChild.toggleAttribute('disabled')" id="defaultCheck<?= $p['id'] ?>">
 												<label class="form-check-label" for="defaultCheck<?= $p['id'] ?>">
 													<img class="img-thumbnail" src="<?= base_url('assets/dist/img/product/') . $p['gambar_product']; ?>">
 													<br>
 													<?= $p['nama_product'] ?></label>
-												<input class="form-control" type="number" name="jumlah[]" id="jumlah" placeholder="jumlah" disabled hidden>
+												<input type="hidden" name="berat[]" value="<?= $p['berat_product'] ?>">
+												<input class="form-control" type="number" name="jumlah[]" placeholder="jumlah" disabled hidden>
 											</div>
 										<?php endforeach ?>
 									</div>

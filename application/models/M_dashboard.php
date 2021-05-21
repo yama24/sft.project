@@ -2,6 +2,14 @@
 
 class M_dashboard extends CI_Model
 {
+	function getAllProduct()
+	{
+		return $this->db->get('product')->result_array();
+	}
+	function getAllTransaction()
+	{
+		return $this->db->get_where('label', ['type' => 1])->result_array();
+	}
 	function getMonth()
 	{
 		$data['today'] = time();
