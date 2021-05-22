@@ -26,7 +26,7 @@
 							<!-- small box -->
 							<div class="small-box bg-info">
 								<div class="inner">
-									<h3><?= number_format(count($product), 0, ",", "."); ?></h3>
+									<h4><b><?= number_format(count($product), 0, ",", "."); ?></b></h4>
 
 									<p>Product</p>
 								</div>
@@ -41,9 +41,9 @@
 							<!-- small box -->
 							<div class="small-box bg-success">
 								<div class="inner">
-									<h3><?= number_format(count($transaction), 0, ",", "."); ?>
+									<h4><b><?= number_format(count($transaction), 0, ",", "."); ?></b>
 										<!-- <sup style="font-size: 20px">%</sup> -->
-									</h3>
+									</h4>
 
 									<p>Transaction</p>
 								</div>
@@ -55,10 +55,9 @@
 						</div>
 						<!-- ./col -->
 						<div class="col-lg-3 col-6">
-							<div class="small-box bg-warning">
+							<div class="small-box bg-primary">
 								<div class="inner">
-									<h3><?= "Rp. " . substr(number_format(array_sum($sell), 0, ",", "."), 0, -4) . " rb";
-										?></h3>
+									<h4><b><?= "Rp. " . number_format(array_sum($sell), 0, ",", "."); ?></b></h4>
 
 									<p>Sales Turnover</p>
 								</div>
@@ -72,7 +71,7 @@
 						<div class="col-lg-3 col-6">
 							<div class="small-box bg-danger">
 								<div class="inner">
-									<h3><?= "Rp. " . substr(number_format(array_sum($sell) - array_sum($buy), 0, ",", "."), 0, -4) . " rb" ?></h3>
+									<h4><b><?= "Rp. " . number_format(array_sum($sell) - array_sum($buy), 0, ",", "."); ?></b></h4>
 
 									<p>Profit</p>
 								</div>
@@ -146,17 +145,17 @@
 					<div class="row mb-3">
 						<div class="col-4">
 							<button style="height: 100%;" data-toggle="modal" data-target="#modal-tambah" class="btn btn-block bg-success">
-								<i class="fas fa-plus"></i><br>New Label
+								<i class="fas fa-plus"></i><br>Label
 							</button>
 						</div>
 						<div class="col-4">
 							<a style="height: 100%;" href="<?= base_url('transaction/new') ?>" class="btn btn-block bg-danger">
-								<i class="fas fa-plus"></i><br>New Transaction
+								<i class="fas fa-plus"></i><br>Transaction
 							</a>
 						</div>
 						<div class="col-4">
 							<a style="height: 100%;" href="<?= base_url('product/new') ?>" class="btn btn-block bg-info">
-								<i class="fas fa-plus"></i><br>New Product
+								<i class="fas fa-plus"></i><br>Product
 							</a>
 						</div>
 					</div>
