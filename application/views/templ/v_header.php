@@ -60,7 +60,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-info elevation-4">
+		<aside class="main-sidebar sidebar-dark-info elevation-4 sidebar-no-expand">
 			<!-- Brand Logo -->
 			<a href="<?php echo base_url() . 'dashboard' ?>" class="brand-link">
 				<img src="<?= base_url(); ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
