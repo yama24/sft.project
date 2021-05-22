@@ -169,22 +169,6 @@
 									</div>
 									<div class="col-lg-6">
 										<label>Pilihan Produk</label> <br>
-										<?php foreach ($inactiveCheckedProduct as $p) : ?>
-											<div class="form-check mx-3 my-1" style="float:left; width: 200px;">
-												<input class="form-check-input" name="produk[]" type="checkbox" value="<?= $p['id'] ?>" onchange="this.parentElement.lastElementChild.toggleAttribute('hidden'); this.parentElement.lastElementChild.toggleAttribute('disabled')" id="defaultCheck<?= $p['id'] ?>" checked>
-												<label class="form-check-label" for="defaultCheck<?= $p['id'] ?>">
-													<img class="img-thumbnail" src="<?= base_url('assets/dist/img/product/') . $p['gambar_product']; ?>">
-													<br>
-													<?= $p['nama_product'] ?></label>
-												<input type="hidden" name="berat[]" value="<?= $p['berat_product'] ?>">
-												<input class="form-control" type="number" name="jumlah[]" id="jumlah" placeholder="jumlah" <?php
-																																			foreach ($transactionItems as $ti) {
-																																				if ($ti['item'] == $p['id']) {
-																																					echo 'value="' . $ti['amount'] . '"';
-																																				}
-																																			} ?>>
-											</div>
-										<?php endforeach ?>
 										<?php $attr = "hidden disabled"; ?>
 										<?php foreach ($activeProduct as $p) : ?>
 											<div class="form-check mx-3 my-1" style="float:left; width: 200px;">
@@ -210,6 +194,22 @@
 																																					$attr = "";
 																																				}
 																																			} ?> <?= $attr; ?>>
+											</div>
+										<?php endforeach ?>
+										<?php foreach ($inactiveCheckedProduct as $p) : ?>
+											<div class="form-check mx-3 my-1" style="float:left; width: 200px;">
+												<input class="form-check-input" name="produk[]" type="checkbox" value="<?= $p['id'] ?>" onchange="this.parentElement.lastElementChild.toggleAttribute('hidden'); this.parentElement.lastElementChild.toggleAttribute('disabled')" id="defaultCheck<?= $p['id'] ?>" checked>
+												<label class="form-check-label" for="defaultCheck<?= $p['id'] ?>">
+													<img class="img-thumbnail" src="<?= base_url('assets/dist/img/product/') . $p['gambar_product']; ?>">
+													<br>
+													<?= $p['nama_product'] ?></label>
+												<input type="hidden" name="berat[]" value="<?= $p['berat_product'] ?>">
+												<input class="form-control" type="number" name="jumlah[]" id="jumlah" placeholder="jumlah" <?php
+																																			foreach ($transactionItems as $ti) {
+																																				if ($ti['item'] == $p['id']) {
+																																					echo 'value="' . $ti['amount'] . '"';
+																																				}
+																																			} ?>>
 											</div>
 										<?php endforeach ?>
 									</div>
