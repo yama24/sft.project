@@ -110,7 +110,7 @@
 										<p class="ml-auto d-flex flex-column text-right">
 											<?php
 											if ($percent > 0) { ?>
-												<span class="text-primary">
+												<span class="text-success">
 													<i class="fas fa-arrow-up"></i> <?= number_format($percent, 0, ",", "."); ?>%
 												</span>
 											<?php } else { ?>

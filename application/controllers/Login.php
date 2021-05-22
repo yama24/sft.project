@@ -6,12 +6,12 @@ class Login extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('status') == "telah_login") {
-			redirect('dashboard');
-		}
 	}
 	public function index()
 	{
+		if ($this->session->userdata('status') == "telah_login") {
+			redirect('dashboard');
+		}
 		$this->load->view('v_login');
 	}
 	public function aksi()
@@ -54,6 +54,7 @@ class Login extends CI_Controller
 				);
 
 				$this->session->set_userdata($data_session);
+				$this->session->set_flashdata('welcome', 'Selamat Databg Admin!');
 				// alihkan halaman ke halaman dashboard pengguna
 				redirect(base_url() . 'dashboard');
 			} else {
@@ -63,5 +64,11 @@ class Login extends CI_Controller
 		} else {
 			$this->load->view('v_login');
 		}
+	}
+	public function keluar()
+	{
+		$this->session->unset_userdata('status');
+		$this->session->set_flashdata('logout', 'Anda berhasil logout!');
+		redirect('login');
 	}
 }

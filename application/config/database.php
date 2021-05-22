@@ -80,7 +80,12 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'sft.project',
-	
+
+	// 'username' => 'u5462684_yama',
+	// 'password' => 'Muhammad2417',
+	// 'database' => 'u5462684_labelmaker',
+
+
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

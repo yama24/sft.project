@@ -1,14 +1,42 @@
 <footer class="main-footer">
-  <div class="float-right d-none d-sm-block">
-    <b>Version</b> 3.0.5
+  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+  All rights reserved.
+  <div class="float-right d-none d-sm-inline-block">
+    <b>Version</b> 3.1.0
   </div>
-  <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-  reserved.
 </footer>
+
+<?php
+$id_user = $this->session->userdata('id');
+$user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array();
+?>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
   <!-- Control sidebar content goes here -->
+  <div class="card-body box-profile">
+    <div class="text-center">
+      <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>assets/dist/img/yama.jpg" alt="User profile picture">
+    </div>
+
+    <h3 class="profile-username text-center"><?php echo $user['pengguna_nama'] ?> <?php echo $user['pengguna_email'] ?></h3>
+
+    <p class="text-muted text-center">Software Engineer</p>
+
+    <ul class="list-group list-group-unbordered mb-3">
+      <li class="list-group-item px-2">
+        <b>Followers</b> <a class="float-right">1,322</a>
+      </li>
+      <li class="list-group-item px-2">
+        <b>Following</b> <a class="float-right">543</a>
+      </li>
+      <li class="list-group-item px-2">
+        <b>Friends</b> <a class="float-right">13,287</a>
+      </li>
+    </ul>
+
+    <a href="<?= base_url('login/keluar') ?>" class="btn btn-danger btn-block"><b>Logout</b></a>
+  </div>
 </aside>
 <!-- /.control-sidebar -->
 </div>
@@ -21,60 +49,124 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script> -->
 <!-- DataTables -->
 <script src="<?php echo base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
 
 <script src="<?php echo base_url() ?>assets/plugins/chart.js-3.2.1/dist/chart.min.js"></script>
-
-<script>
-  var ctx = document.getElementById('myChart');
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [<?php foreach (array_reverse($monthChart) as $m) {
-                  echo "'" . $m . "',";
-                } ?>],
-      datasets: [{
-          label: 'Output',
-          data: [<?php foreach (array_reverse($modalChart) as $m) {
-                    echo $m . ',';
+<?php if (!(date('His') >= 060000 && date('His') <= 180000)) { ?>
+  <script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [<?php foreach (array_reverse($monthChart) as $m) {
+                    echo "'" . $m . "',";
                   } ?>],
-          backgroundColor: [
-            'rgba(220, 53, 69, 0.5)'
-          ],
-          borderColor: [
-            'rgba(220, 53, 69, 1)'
-          ],
-          borderWidth: 1
+        datasets: [{
+            label: 'Expense',
+            data: [<?php foreach (array_reverse($modalChart) as $m) {
+                      echo $m . ',';
+                    } ?>],
+            backgroundColor: [
+              'rgba(220, 53, 69, 0.7)'
+            ],
+            borderColor: [
+              'rgba(220, 53, 69, 1)'
+            ],
+            borderWidth: 1
+          },
+          {
+            label: 'Income',
+            data: [<?php foreach (array_reverse($jualChart) as $j) {
+                      echo $j . ',';
+                    } ?>],
+            backgroundColor: [
+              'rgba(0, 123, 255, 0.7)'
+            ],
+            borderColor: [
+              'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: ['#666']
+            },
+            ticks: {
+              color: ['#fff']
+            }
+          },
+          x: {
+            grid: {
+              color: ['#666']
+            },
+            ticks: {
+              color: ['#fff']
+            }
+          }
         },
-        {
-          label: 'Input',
-          data: [<?php foreach (array_reverse($jualChart) as $j) {
-                    echo $j . ',';
+        color: ['#fff']
+      }
+    });
+  </script>
+<?php } else { ?>
+  <script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [<?php foreach (array_reverse($monthChart) as $m) {
+                    echo "'" . $m . "',";
                   } ?>],
-          backgroundColor: [
-            'rgba(23, 162, 184, 0.5)'
-          ],
-          borderColor: [
-            'rgba(23, 162, 184, 1)'
-          ],
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        datasets: [{
+            label: 'Expense',
+            data: [<?php foreach (array_reverse($modalChart) as $m) {
+                      echo $m . ',';
+                    } ?>],
+            backgroundColor: [
+              'rgba(220, 53, 69, 0.7)'
+            ],
+            borderColor: [
+              'rgba(220, 53, 69, 1)'
+            ],
+            borderWidth: 1
+          },
+          {
+            label: 'Income',
+            data: [<?php foreach (array_reverse($jualChart) as $j) {
+                      echo $j . ',';
+                    } ?>],
+            backgroundColor: [
+              'rgba(0, 123, 255, 0.7)'
+            ],
+            borderColor: [
+              'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          }
         }
       }
-    }
-  });
-</script>
+    });
+  </script>
+<?php } ?>
 <script>
   $(document).ready(function() {
     $("#provinsi").change(function() {

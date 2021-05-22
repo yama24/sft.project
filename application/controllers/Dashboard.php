@@ -43,12 +43,6 @@ class Dashboard extends CI_Controller
 	{
 		$this->load->view('404');
 	}
-	public function keluar()
-	{
-		$this->session->unset_userdata('status');
-		$this->session->set_flashdata('logout', 'Anda berhasil logout!');
-		redirect('login');
-	}
 	// public function ganti_password()
 	// {
 	// 	$this->load->view('dashboard/v_ganti_password');
