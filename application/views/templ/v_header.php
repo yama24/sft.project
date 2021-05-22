@@ -35,7 +35,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 	<!-- Site wrapper -->
 	<div class="wrapper">
 		<!-- Navbar -->
@@ -83,7 +83,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-info elevation-4">
 			<!-- Brand Logo -->
 			<a href="<?php echo base_url() . 'dashboard' ?>" class="brand-link">
 				<img src="<?= base_url(); ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
