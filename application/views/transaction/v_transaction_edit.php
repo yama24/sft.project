@@ -87,7 +87,6 @@
 											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="provinsi" class="form-control" id="provinsi" required>
-														<option> - Pilih Provinsi - </option>
 														<?php foreach ($provinces as $prov) { ?>
 															<option value="<?= $prov['id'] ?>" <?php if ($prov['id'] == $label['province_id']) {
 																									echo "selected";
@@ -99,7 +98,6 @@
 											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="kabupaten" class="form-control" id="kabupaten" required>
-														<option value=''>Kota/Kabupaten</option>
 														<?php foreach ($regencies as $reg) { ?>
 															<option value="<?= $reg['id'] ?>" <?php if ($reg['id'] == $label['regency_id']) {
 																									echo "selected";
@@ -111,7 +109,6 @@
 											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="kecamatan" class="form-control" id="kecamatan" required>
-														<option value=''>Kecamatan</option>
 														<?php foreach ($districts as $dis) { ?>
 															<option value="<?= $dis['id'] ?>" <?php if ($dis['id'] == $label['district_id']) {
 																									echo "selected";
@@ -123,7 +120,6 @@
 											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="desa" class="form-control" id="desa" required>
-														<option value=''>Desa/Kelurahan</option>
 														<?php foreach ($villages as $vil) { ?>
 															<option value="<?= $vil['id'] ?>" <?php if ($vil['id'] == $label['village_id']) {
 																									echo "selected";
@@ -135,7 +131,6 @@
 											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="postalcode" class="form-control" id="postalcode" required>
-														<option value=''>KodePos</option>
 														<?php foreach ($postalcodes as $pos) { ?>
 															<option value="<?= $pos['id'] ?>" <?php if ($pos['id'] == $label['postalcode_id']) {
 																									echo "selected";

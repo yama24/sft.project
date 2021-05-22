@@ -83,7 +83,7 @@ class Transaction extends CI_Controller
     {
         $this->db->order_by('name');
         $query = $this->db->get_where('regencies', array('province_id' => $id_prov));
-        $data = "<option value=''>- Pilih Kota/Kabupaten -</option>";
+        $data = "<option value=''>🔹 Pilih Kota/Kabupaten</option>";
         foreach ($query->result() as $value) {
             $data .= "<option value='" . $value->id . "'>" . ucwords(strtolower($value->name)) . "</option>";
         }
@@ -94,7 +94,7 @@ class Transaction extends CI_Controller
     {
         $this->db->order_by('name');
         $query = $this->db->get_where('districts', array('regency_id' => $id_kab));
-        $data = "<option value=''> - Pilih Kecamatan - </option>";
+        $data = "<option value=''>🔹 Pilih Kecamatan</option>";
         foreach ($query->result() as $value) {
             $data .= "<option value='" . $value->id . "'>" . ucwords(strtolower($value->name)) . "</option>";
         }
@@ -105,7 +105,7 @@ class Transaction extends CI_Controller
     {
         $this->db->order_by('name');
         $query = $this->db->get_where('villages', array('district_id' => $id_kec));
-        $data = "<option value=''> - Pilih Desa/Kelurahan - </option>";
+        $data = "<option value=''>🔹 Pilih Desa/Kelurahan</option>";
         foreach ($query->result() as $value) {
             $data .= "<option value='" . $value->id . "'>" . ucwords(strtolower($value->name)) . "</option>";
         }
@@ -115,7 +115,7 @@ class Transaction extends CI_Controller
     {
         $this->db->order_by('postal_code');
         $query = $this->db->get_where('postalcodes', array('village_id' => $id_pos));
-        $data = "<option value=''> - Pilih Kodepos - </option>";
+        $data = "<option value=''>🔹 Pilih Kodepos</option>";
         foreach ($query->result() as $value) {
             $data .= "<option value='" . $value->id . "'>" . ucwords(strtolower($value->postal_code)) . "</option>";
         }

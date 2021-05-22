@@ -83,7 +83,7 @@
 											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="provinsi" class="form-control" id="provinsi">
-														<option> - Pilih Provinsi - </option>
+														<option>🔹 Pilih Provinsi</option>
 														<?php foreach ($provinces as $prov) {
 															echo '<option value="' . $prov['id'] . '">' . ucwords(strtolower($prov['name'])) . '</option>';
 														} ?>
