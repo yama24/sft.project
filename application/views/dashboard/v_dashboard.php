@@ -144,19 +144,19 @@
 						</div>
 					</div>
 					<div class="row mb-3">
-						<div class="col-md-4">
-							<button data-toggle="modal" data-target="#modal-tambah" class="btn btn-block bg-success">
-								<i class="fas fa-plus"></i> New Label
+						<div class="col-4">
+							<button style="height: 100%;" data-toggle="modal" data-target="#modal-tambah" class="btn btn-block bg-success">
+								<i class="fas fa-plus"></i><br>New Label
 							</button>
 						</div>
-						<div class="col-md-4">
-							<a href="<?= base_url('transaction/new') ?>" class="btn btn-block bg-danger">
-								<i class="fas fa-plus"></i> New Transaction
+						<div class="col-4">
+							<a style="height: 100%;" href="<?= base_url('transaction/new') ?>" class="btn btn-block bg-danger">
+								<i class="fas fa-plus"></i><br>New Transaction
 							</a>
 						</div>
-						<div class="col-md-4">
-							<a href="<?= base_url('product/new') ?>" class="btn btn-block bg-info">
-								<i class="fas fa-plus"></i> New Product
+						<div class="col-4">
+							<a style="height: 100%;" href="<?= base_url('product/new') ?>" class="btn btn-block bg-info">
+								<i class="fas fa-plus"></i><br>New Product
 							</a>
 						</div>
 					</div>
