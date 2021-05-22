@@ -26,7 +26,7 @@
 							<!-- small box -->
 							<div class="small-box bg-info">
 								<div class="inner">
-									<h3><?= count($product); ?></h3>
+									<h3><?= number_format(count($product), 0, ",", "."); ?></h3>
 
 									<p>Product</p>
 								</div>
@@ -41,7 +41,7 @@
 							<!-- small box -->
 							<div class="small-box bg-success">
 								<div class="inner">
-									<h3><?= count($transaction); ?>
+									<h3><?= number_format(count($transaction), 0, ",", "."); ?>
 										<!-- <sup style="font-size: 20px">%</sup> -->
 									</h3>
 
@@ -57,7 +57,8 @@
 						<div class="col-lg-3 col-6">
 							<div class="small-box bg-warning">
 								<div class="inner">
-									<h3><?= number_format(array_sum($sell), 0, ",", ".") ?></h3>
+									<h3><?= "Rp. " . substr(number_format(array_sum($sell), 0, ",", "."), 0, -4) . " rb";
+										?></h3>
 
 									<p>Sales Turnover</p>
 								</div>
@@ -71,7 +72,7 @@
 						<div class="col-lg-3 col-6">
 							<div class="small-box bg-danger">
 								<div class="inner">
-									<h3><?= number_format(array_sum($sell) - array_sum($buy), 0, ",", ".") ?></h3>
+									<h3><?= "Rp. " . substr(number_format(array_sum($sell) - array_sum($buy), 0, ",", "."), 0, -4) . " rb" ?></h3>
 
 									<p>Profit</p>
 								</div>
@@ -141,8 +142,74 @@
 							<!-- /.card -->
 
 						</div>
-
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-4">
+							<button data-toggle="modal" data-target="#modal-tambah" class="btn btn-block bg-success">
+								<i class="fas fa-plus"></i> New Label
+							</button>
+						</div>
+						<div class="col-md-4">
+							<a href="<?= base_url('transaction/new') ?>" class="btn btn-block bg-danger">
+								<i class="fas fa-plus"></i> New Transaction
+							</a>
+						</div>
+						<div class="col-md-4">
+							<a href="<?= base_url('product/new') ?>" class="btn btn-block bg-info">
+								<i class="fas fa-plus"></i> New Product
+							</a>
+						</div>
 					</div>
 			</section>
 		</div>
 		<!-- /.content-wrapper -->
+		<div class="modal fade" id="modal-tambah">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">New Label</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form role="form" method="post" action="<?php echo base_url('label/new') ?>">
+						<div class="modal-body">
+							<div class="card-body">
+								<div class="form-group">
+									<label>Pengirim</label>
+									<input type="text" class="form-control" placeholder="Isi dengan nama/toko" name="sender" required>
+								</div>
+								<div class="form-group">
+									<label>No. Hp Pengirim</label>
+									<input type="tel" class="form-control" placeholder="cth: 082161821282" name="num_sender" pattern="[0]{1}[8]{1}[0-9].{8,}" required>
+								</div>
+								<div class="form-group">
+									<label>Penerima</label>
+									<input type="text" class="form-control" placeholder="Isi dengan nama" name="receiver" required>
+								</div>
+								<div class="form-group">
+									<label>No. Hp Penerima</label>
+									<input type="tel" class="form-control" placeholder="cth: 082161821282" name="num_receiver" pattern="[0]{1}[8]{1}[0-9].{8,}" required>
+								</div>
+								<div class="form-group">
+									<label>Alamat Penerima</label>
+									<textarea name="address_receiver" class="form-control" required></textarea>
+								</div>
+								<div class="form-group">
+									<label>Kurir</label>
+									<input type="text" class="form-control" placeholder="Isi dengan kurir" name="courier" required>
+								</div>
+								<div class="form-group">
+									<label>Pesanan</label>
+									<textarea name="order" class="form-control" required></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer justify-content-between">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-success">Add</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
