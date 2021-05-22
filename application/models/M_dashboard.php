@@ -10,6 +10,10 @@ class M_dashboard extends CI_Model
 	{
 		return $this->db->get_where('label', ['type' => 1])->result_array();
 	}
+	function getAllSell()
+	{
+		return $this->db->get('transaction')->result_array();
+	}
 	function getMonth()
 	{
 		$data['today'] = time();

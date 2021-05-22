@@ -95,6 +95,8 @@
 														<?php } ?>
 													</select>
 												</div>
+											</div>
+											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="kabupaten" class="form-control" id="kabupaten" required>
 														<option value=''>Kota/Kabupaten</option>
@@ -117,6 +119,8 @@
 														<?php } ?>
 													</select>
 												</div>
+											</div>
+											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="desa" class="form-control" id="desa" required>
 														<option value=''>Desa/Kelurahan</option>
@@ -127,6 +131,8 @@
 														<?php } ?>
 													</select>
 												</div>
+											</div>
+											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="postalcode" class="form-control" id="postalcode" required>
 														<option value=''>KodePos</option>
@@ -137,7 +143,6 @@
 														<?php } ?>
 													</select>
 												</div>
-
 											</div>
 											<div class="col-lg-12">
 												<div class="form-group">

@@ -17,14 +17,23 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$this->load->model('m_dashboard');
+		$d = $this->m_dashboard->getAllSell();
+		$buy = [];
+		$sell = [];
+		for ($i = 0; $i < count($d); $i++) {
+			$pb = $d[$i]['price_buy'];
+			$ps = $d[$i]['price_sell'];
+			array_push($buy, $pb);
+			array_push($sell, $ps);
+		}
+		$data['buy'] = $buy;
+		$data['sell'] = $sell;
 		$data['product'] = $this->m_dashboard->getAllProduct();
 		$data['transaction'] = $this->m_dashboard->getAllTransaction();
 		$data['modalChart'] = $this->m_dashboard->dashboardChartModal();
 		$data['jualChart'] = $this->m_dashboard->dashboardChartJual();
 		$data['page'] = "Dashboard";
 		$data['monthChart'] = $this->m_dashboard->getMonth();
-		// var_dump($data['modalChart']);
-		// die;
 		$this->load->view('templ/v_header', $data);
 		$this->load->view('dashboard/v_dashboard', $data);
 		$this->load->view('templ/v_footer', $data);

@@ -89,6 +89,8 @@
 														} ?>
 													</select>
 												</div>
+											</div>
+											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="kabupaten" class="form-control" id="kabupaten">
 														<option value=''>Kota/Kabupaten</option>
@@ -101,17 +103,20 @@
 														<option value=''>Kecamatan</option>
 													</select>
 												</div>
+											</div>
+											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="desa" class="form-control" id="desa">
 														<option value=''>Desa/Kelurahan</option>
 													</select>
 												</div>
+											</div>
+											<div class="col-lg-6">
 												<div class="input-group mb-3">
 													<select name="postalcode" class="form-control" id="postalcode">
 														<option value=''>KodePos</option>
 													</select>
 												</div>
-
 											</div>
 											<div class="col-lg-12">
 												<div class="form-group">
