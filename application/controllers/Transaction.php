@@ -176,7 +176,7 @@ class Transaction extends CI_Controller
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = date('d M y H:i:s', strtotime($field->date_int));
+            $row[] = date('d M y H:i:s', $field->date_int);
             $row[] = $field->transaction_key_label;
             $row[] = ucwords(strtolower($field->sender));
             $row[] = ucwords(strtolower($field->receiver));
