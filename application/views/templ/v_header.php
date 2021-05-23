@@ -64,7 +64,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-						<i class="fas fa-th-large"></i>
+						<i class="fas fa-user"></i>
 					</a>
 				</li>
 
