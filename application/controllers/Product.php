@@ -113,13 +113,13 @@ class Product extends CI_Controller
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = date('d M y H:i:s', strtotime($field->date));
+            $row[] = date('d M y H:i:s', $field->date);
             $row[] = $field->nama_product;
             $row[] = '<img src="' . base_url('assets/dist/img/product/') . $field->gambar_product . '" alt="" width="100px" class="img-thumbnail">';
             $row[] = 'Rp.' . number_format($field->modal_product, 0, ",", ".");
             $row[] = 'Rp.' . number_format($field->jual_product, 0, ",", ".");
             $row[] = number_format($field->berat_product, 0, ",", ".") . ' gr';
-            $row[] = date('d M y H:i:s', strtotime($field->date)) . ' ' . $badge;
+            $row[] = date('d M y H:i:s', $field->due_date_product) . ' ' . $badge;
             $row[] = '<a href="' . base_url('product/edit/') . $field->id . '" class="btn btn-outline-success">
             <i class="fas fa-edit"></i>
         </a>
