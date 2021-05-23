@@ -167,4 +167,43 @@ class Transaction extends CI_Controller
             $this->load->view('label/v_print_thermal', $data);
         }
     }
+    public function dataServer()
+    {
+        $list = $this->m_transaction->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = date('d M y H:i:s', strtotime($field->date_int));
+            $row[] = $field->transaction_key_label;
+            $row[] = ucwords(strtolower($field->sender));
+            $row[] = ucwords(strtolower($field->receiver));
+            $row[] = $field->courier;
+            $row[] = '<a href="' . base_url('transaction/show/') . $field->transaction_key_label . '" class="btn btn-outline-info">
+            <i class="fas fa-eye"></i>
+        </a>
+        <a href="' . base_url('transaction/print_thermal/') . $field->id . '" target="_blank" class="btn btn-outline-warning">
+            <i class="fas fa-print"></i>
+        </a>
+        <a href="' . base_url('transaction/edit/') . $field->transaction_key_label . '" class="btn btn-outline-success">
+            <i class="fas fa-edit"></i>
+        </a>
+        <button data-toggle="modal" data-target="#modal-hapus' . $field->id . '" class="btn btn-outline-danger">
+            <i class="fas fa-trash"></i>
+        </button>';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->m_transaction->count_all(),
+            "recordsFiltered" => $this->m_transaction->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
 }

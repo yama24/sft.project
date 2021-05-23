@@ -230,11 +230,7 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
 </script>
 <script>
   $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
+    $('#label').DataTable({
       "paging": true,
       // "lengthChange": false,
       // "searching": false,
@@ -242,6 +238,73 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "processing": true,
+      "serverSide": true,
+      "order": [],
+
+      "ajax": {
+        "url": "<?php echo base_url('label/dataServer') ?>",
+        "type": "POST"
+      },
+
+
+      "columnDefs": [{
+        "targets": [0],
+        "orderable": false,
+      }, ],
+
+    });
+  });
+  $(function() {
+    $('#transaction').DataTable({
+      "paging": true,
+      // "lengthChange": false,
+      // "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "processing": true,
+      "serverSide": true,
+      "order": [],
+
+      "ajax": {
+        "url": "<?php echo base_url('transaction/dataServer') ?>",
+        "type": "POST"
+      },
+
+
+      "columnDefs": [{
+        "targets": [0],
+        "orderable": false,
+      }, ],
+
+    });
+  });
+  $(function() {
+    $('#product').DataTable({
+      "paging": true,
+      // "lengthChange": false,
+      // "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "processing": true,
+      "serverSide": true,
+      "order": [],
+
+      "ajax": {
+        "url": "<?php echo base_url('product/dataServer') ?>",
+        "type": "POST"
+      },
+
+
+      "columnDefs": [{
+        "targets": [0],
+        "orderable": false,
+      }, ],
+
     });
   });
 </script>

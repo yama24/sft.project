@@ -16,33 +16,20 @@
 					</div>
 				</div><!-- /.container-fluid -->
 			</section>
-			<!-- <?php
-					if (isset($_GET['alert'])) {
-						if ($_GET['alert'] == "fail") {
-							echo "<div class='alert alert-danger font-weight-bold text-center'>Maaf! Mohon gunakan email atau nomor handphone yang berbeda.</div>";
-						} else if ($_GET['alert'] == "add") {
-							echo "<div class='alert alert-success font-weight-bold text-center'>Data berhasil diinput!</div>";
-						} else if ($_GET['alert'] == "update") {
-							echo "<div class='alert alert-warning font-weight-bold text-center'>Data berhasil diupdate!</div>";
-						} else if ($_GET['alert'] == "delete") {
-							echo "<div class='alert alert-danger font-weight-bold text-center'>Data berhasil dihapus!</div>";
-						}
-					}
-					?> -->
 
-			<?php if ($this->session->flashdata('add')) : ?>
-				<div class='alert alert-success font-weight-bold text-center'><?= $this->session->flashdata('add'); ?></div>
-			<?php elseif ($this->session->flashdata('fail')) : ?>
-				<div class='alert alert-danger font-weight-bold text-center'><?= $this->session->flashdata('fail'); ?></div>
-			<?php elseif ($this->session->flashdata('update')) : ?>
-				<div class='alert alert-warning font-weight-bold text-center'><?= $this->session->flashdata('update'); ?></div>
-			<?php elseif ($this->session->flashdata('del')) : ?>
-				<div class='alert alert-danger font-weight-bold text-center'><?= $this->session->flashdata('del'); ?></div>
-			<?php endif; ?>
 
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
+					<?php if ($this->session->flashdata('add')) : ?>
+						<div class='alert alert-success font-weight-bold text-center'><?= $this->session->flashdata('add'); ?></div>
+					<?php elseif ($this->session->flashdata('fail')) : ?>
+						<div class='alert alert-danger font-weight-bold text-center'><?= $this->session->flashdata('fail'); ?></div>
+					<?php elseif ($this->session->flashdata('update')) : ?>
+						<div class='alert alert-warning font-weight-bold text-center'><?= $this->session->flashdata('update'); ?></div>
+					<?php elseif ($this->session->flashdata('del')) : ?>
+						<div class='alert alert-danger font-weight-bold text-center'><?= $this->session->flashdata('del'); ?></div>
+					<?php endif; ?>
 					<div class="card card-outline card-primary">
 						<div class="card-header">
 							<!-- <h3 class="card-title">Data <?php echo $page ?></h3> -->

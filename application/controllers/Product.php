@@ -99,4 +99,44 @@ class Product extends CI_Controller
         $this->session->set_flashdata('del', 'Produk dihapus!');
         redirect('product');
     }
+    public function dataServer()
+    {
+        $list = $this->m_product->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            if ($field->due_date_product > time()) {
+                $badge = '<span class="badge badge-success">Active</span>';
+            } else {
+                $badge = '<span class="badge badge-danger">Inactive</span>';
+            };
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = date('d M y H:i:s', strtotime($field->date));
+            $row[] = $field->nama_product;
+            $row[] = '<img src="' . base_url('assets/dist/img/product/') . $field->gambar_product . '" alt="" width="100px" class="img-thumbnail">';
+            $row[] = 'Rp.' . number_format($field->modal_product, 0, ",", ".");
+            $row[] = 'Rp.' . number_format($field->jual_product, 0, ",", ".");
+            $row[] = number_format($field->berat_product, 0, ",", ".") . ' gr';
+            $row[] = date('d M y H:i:s', strtotime($field->date)) . ' ' . $badge;
+            $row[] = '<a href="' . base_url('product/edit/') . $field->id . '" class="btn btn-outline-success">
+            <i class="fas fa-edit"></i>
+        </a>
+        <button data-toggle="modal" data-target="#modal-hapus' . $field->id . '" class="btn btn-outline-danger">
+            <i class="fas fa-trash"></i>
+        </button>';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->m_product->count_all(),
+            "recordsFiltered" => $this->m_product->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
 }

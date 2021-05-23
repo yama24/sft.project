@@ -45,7 +45,7 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
-							<table id="example2" class="table table-bordered table-hover">
+							<table id="product" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th style="width: 1%;">No</th>
@@ -60,10 +60,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php
-									$no = 1;
-									foreach ($index as $i) {
-									?>
+									<!-- <?php
+											$no = 1;
+											foreach ($index as $i) {
+											?>
 										<tr>
 											<td><?php echo $no++; ?></td>
 											<td><?php echo date('d M Y H:i', $i['date']); ?></td>
@@ -78,9 +78,6 @@
 																												echo '<span class="badge badge-danger">Inactive</span>';
 																											}; ?></td>
 											<td>
-												<!-- <a href="<?php echo base_url() . 'dashboard/print_thermal/' . $i['id'] ?>" target="_blank" class="btn btn-outline-warning">
-													<i class="fas fa-print"></i>
-												</a> -->
 												<a href="<?= base_url('product/edit/') . $i['id'] ?>" class="btn btn-outline-success">
 													<i class="fas fa-edit"></i>
 												</a>
@@ -89,7 +86,7 @@
 												</button>
 											</td>
 										</tr>
-									<?php } ?>
+									<?php } ?> -->
 								</tbody>
 								<tfoot>
 									<tr>

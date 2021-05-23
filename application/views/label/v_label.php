@@ -43,7 +43,7 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
-							<table id="example2" class="table table-bordered table-hover">
+							<table id="label" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th style="width: 1%;">No</th>
@@ -59,10 +59,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php
-									$no = 1;
-									foreach ($index as $i) {
-									?>
+									<!-- <?php
+											$no = 1;
+											foreach ($index as $i) {
+											?>
 										<tr>
 											<td><?php echo $no++; ?></td>
 											<td><?php echo date('d M y H:i:s', strtotime($i['date_datetime'])); ?></td>
@@ -85,7 +85,7 @@
 												</button>
 											</td>
 										</tr>
-									<?php } ?>
+									<?php } ?> -->
 								</tbody>
 								<tfoot>
 									<tr>
