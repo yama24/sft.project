@@ -164,7 +164,7 @@ class Transaction extends CI_Controller
             $data['label'] = $getLinks;
             // print_r($order);
             // die;
-            $this->load->view('label/v_print_thermal', $data);
+            $this->load->view('transaction/v_print_thermal', $data);
         }
     }
     public function dataServer()
