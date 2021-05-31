@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 
 	'username' => 'root',
-	'password' => '',
+	'password' => 'root',
 	'database' => 'sft.project',
 
 	// 'username' => 'u5462684_yama',
