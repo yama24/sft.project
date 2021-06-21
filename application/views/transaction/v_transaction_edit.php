@@ -147,6 +147,13 @@
 													<?= form_error('ongkir', '<small class="text-danger pl-3">', '</small>'); ?>
 												</div>
 											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="resi">Nomor resi</label>
+													<input type="number" class="form-control" placeholder="Isi dengan resi" name="resi" id="resi" value="<?= $label['resi']; ?>">
+													<?= form_error('resi', '<small class="text-danger pl-3">', '</small>'); ?>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="col-lg-6">

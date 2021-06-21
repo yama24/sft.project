@@ -99,8 +99,9 @@
 									<div class="col-sm-4 invoice-col">
 										<b><?= $label['transaction_key_label']; ?></b><br>
 										<br>
-										<b>Courier:</b> <?= $label['courier']; ?><br>
-										<b>Weight:</b> <?= number_format(array_sum($sumWeight), 0, ",", "."); ?> gr<br>
+										<b>Courier :</b> <?= $label['courier']; ?><br>
+										<b>Weight :</b> <?= number_format(array_sum($sumWeight), 0, ",", "."); ?> gr<br>
+										<b>Resi :</b> <?= $label['resi']; ?><br>
 										<!-- <b>Account:</b> 968-34567 -->
 									</div>
 									<!-- /.col -->

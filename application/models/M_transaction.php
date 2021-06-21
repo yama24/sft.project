@@ -101,6 +101,7 @@ class M_transaction extends CI_Model
 		$alamat = $this->input->post('alamat');
 		$kurir = $this->input->post('kurir');
 		$ongkir = $this->input->post('ongkir');
+		$resi = $this->input->post('resi');
 		$date = time();
 		$key = "SFT" . $date;
 		$idProduk = $this->input->post('produk');
@@ -116,6 +117,7 @@ class M_transaction extends CI_Model
 			'num_receiver' => $hppenerima,
 			'courier' => $kurir,
 			'ongkir' => $ongkir,
+			'resi' => $resi,
 			'province_id' => $province,
 			'regency_id' => $regency,
 			'district_id' => $district,
@@ -167,6 +169,7 @@ class M_transaction extends CI_Model
 		$alamat = $this->input->post('alamat');
 		$kurir = $this->input->post('kurir');
 		$ongkir = $this->input->post('ongkir');
+		$resi = $this->input->post('resi');
 		$idProduk = $this->input->post('produk');
 		$jumlah = $this->input->post('jumlah');
 		$berat = $this->input->post('berat');
@@ -178,6 +181,7 @@ class M_transaction extends CI_Model
 			'num_receiver' => $hppenerima,
 			'courier' => $kurir,
 			'ongkir' => $ongkir,
+			'resi' => $resi,
 			'province_id' => $province,
 			'regency_id' => $regency,
 			'district_id' => $district,

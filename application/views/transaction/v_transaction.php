@@ -53,6 +53,7 @@
 										<th>Pengirim</th>
 										<th>Penerima</th>
 										<th>Kurir</th>
+										<th>Resi</th>
 										<th>Opsi</th>
 									</tr>
 								</thead>
@@ -93,6 +94,7 @@
 										<th>Pengirim</th>
 										<th>Penerima</th>
 										<th>Kurir</th>
+										<th>Resi</th>
 										<th>Opsi</th>
 									</tr>
 								</tfoot>

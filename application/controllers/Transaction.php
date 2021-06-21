@@ -181,7 +181,13 @@ class Transaction extends CI_Controller
             $row[] = ucwords(strtolower($field->sender));
             $row[] = ucwords(strtolower($field->receiver));
             $row[] = $field->courier;
-            $row[] = '<a href="' . base_url('transaction/show/') . $field->transaction_key_label . '" class="btn btn-outline-info">
+            if ($field->resi != 0) {
+                $row[] = $field->resi;
+            } else {
+                $row[] = '<span class="badge badge-warning">Belum dikirim</span>';
+            }
+            $row[] =
+                $row[] = '<a href="' . base_url('transaction/show/') . $field->transaction_key_label . '" class="btn btn-outline-info">
             <i class="fas fa-eye"></i>
         </a>
         <a href="' . base_url('transaction/print_thermal/') . $field->id . '" target="_blank" class="btn btn-outline-warning">
