@@ -308,6 +308,14 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
     });
   });
 </script>
+<script>
+  function logoutPrompt(){
+    var logoutConfirm = confirm('Apakah anda ingin logout?');
+    if (logoutConfirm) {
+      window.location.href = "<?php echo base_url() . 'login/keluar' ?>";
+    }
+  }
+</script>
 </body>
 
 </html>

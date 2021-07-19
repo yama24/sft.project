@@ -138,7 +138,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'login/keluar' ?>" class="nav-link">
+							<a href="#" class="nav-link" onclick="logoutPrompt()">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
 								<p>
 									Logout
