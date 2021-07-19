@@ -16,23 +16,36 @@ class M_dashboard extends CI_Model
 	}
 	function getMonth()
 	{
-		$data['today'] = time();
-		$data['d31'] = 2678400;
+		$monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'];
+		$today = date('n');
+		$year = date('Y');
 		$b = [];
-		for ($i = 0; $i < 12; $i++) {
-			$m = date('M y', ($data['today'] - ($data['d31'] * $i)));
-			array_push($b, $m);
+		for ($i = 1; $i <= 12; $i++) {
+			$m = $today - $i;
+			if ($m < 0) {
+				$m += 12;
+				$y = $year - 1;
+			} else {
+				$y = $year;
+			}
+			$mo = $monthName[$m] . ' ' . $y;
+			array_push($b, $mo);
 		}
 		return $b;
 	}
 	function dashboardChartModal()
 	{
-		$data['today'] = time();
-		$data['d31'] = 2678400;
+		$today = date('n');
+		$year = date('Y');
 		$b = [];
 		for ($i = 0; $i < 12; $i++) {
-			$m = date('m', ($data['today'] - ($data['d31'] * $i)));
-			$y = date('Y', ($data['today'] - ($data['d31'] * $i)));
+			$m = $today - $i;
+			if ($m < 1) {
+				$m += 12;
+				$y = $year - 1;
+			} else {
+				$y = $year;
+			}
 			$this->db->select('price_buy');
 			$this->db->where('month', $m);
 			$this->db->where('year', $y);
@@ -51,12 +64,17 @@ class M_dashboard extends CI_Model
 	}
 	function dashboardChartJual()
 	{
-		$data['today'] = time();
-		$data['d31'] = 2678400;
+		$today = date('n');
+		$year = date('Y');
 		$b = [];
 		for ($i = 0; $i < 12; $i++) {
-			$m = date('m', ($data['today'] - ($data['d31'] * $i)));
-			$y = date('Y', ($data['today'] - ($data['d31'] * $i)));
+			$m = $today - $i;
+			if ($m < 1) {
+				$m += 12;
+				$y = $year - 1;
+			} else {
+				$y = $year;
+			}
 			$this->db->select('price_sell');
 			$this->db->where('month', $m);
 			$this->db->where('year', $y);
