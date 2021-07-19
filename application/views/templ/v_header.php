@@ -145,6 +145,14 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 								</p>
 							</a>
 						</li>
+						<!-- <li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-sign-out-alt"></i>
+								<p>
+									<?php echo base_url(uri_string()); ?>
+								</p>
+							</a>
+						</li> -->
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
