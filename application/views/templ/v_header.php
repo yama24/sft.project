@@ -21,7 +21,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sidebar-mini-xs <?php if (!(date('His') >= 060000 && date('His') <= 180000)) {
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sidebar-mini-xs <?php if ($this->session->userdata('color') == 'dark') {
 																								echo "dark-mode";
 																							} ?>">
 	<!-- Site wrapper -->
@@ -34,7 +34,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 		<?php endif; ?>
 
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand <?php if (!(date('His') >= 060000 && date('His') <= 180000)) {
+		<nav class="main-header navbar navbar-expand <?php if ($this->session->userdata('color') == 'dark') {
 															echo "navbar-dark navbar-dark";
 														} else {
 															echo "navbar-white navbar-light";
@@ -50,23 +50,36 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 			<ul class="navbar-nav ml-auto">
 				<!-- Notifications Dropdown Menu -->
 				<li class="nav-item">
-					<?php if (!(date('His') >= 060000 && date('His') <= 180000)) { ?>
-						<span class="nav-link">
-							<span> dark</span>
-							<i class="fas fa-moon"></i>
-						</span>
+					<?php if ($this->session->userdata('color') == 'dark') { ?>
+						<form action="dashboard/color" method="post">
+							<input type="hidden" value="light" name="color">
+							<input type="hidden" value="<?= base_url(uri_string()); ?>" name="uri">
+							<button type="submit" style="border: none; background-color: transparent;" class="nav-link" data-toggle="tooltip" data-placement="bottom" title="mode gelap on">
+								<span> dark</span>
+								<i class="fas fa-moon"></i>
+							</button>
+						</form>
 					<?php } else { ?>
-						<span class="nav-link">
-							<span> light</span>
-							<i class="fas fa-sun"></i>
-						</span>
+						<form action="dashboard/color" method="post">
+							<input type="hidden" value="dark" name="color">
+							<input type="hidden" value="<?= base_url(uri_string()); ?>" name="uri">
+							<button type="submit" style="border: none; background-color: transparent;" class="nav-link" data-toggle="tooltip" data-placement="bottom" title="mode gelap off">
+								<span> light</span>
+								<i class="fas fa-sun"></i>
+							</button>
+						</form>
 					<?php } ?>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-						<i class="fas fa-user"></i>
+					<a class="nav-link" href="#" data-toggle="tooltip" data-placement="bottom" title="logout" onclick="logoutPrompt()">
+						<i class="fas fa-power-off"></i>
 					</a>
 				</li>
+				<!-- <li class="nav-item">
+					<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="user">
+						<i class="fas fa-user"></i>
+					</a>
+				</li> -->
 
 			</ul>
 		</nav>
@@ -137,14 +150,14 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 								</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<a href="#" class="nav-link" onclick="logoutPrompt()">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
 								<p>
 									Logout
 								</p>
 							</a>
-						</li>
+						</li> -->
 						<!-- <li class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>

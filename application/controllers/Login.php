@@ -50,11 +50,12 @@ class Login extends CI_Controller
 					'email' => $data['pengguna_email'],
 					'photo' => $data['pengguna_foto'],
 					'level' => $data['pengguna_level'],
+					'color' => 'light',
 					'status' => 'telah_login'
 				);
 
 				$this->session->set_userdata($data_session);
-				$this->session->set_flashdata('welcome', 'Selamat Databg Admin!');
+				$this->session->set_flashdata('welcome', 'Selamat Datang Admin!');
 				// alihkan halaman ke halaman dashboard pengguna
 				redirect(base_url() . 'dashboard');
 			} else {

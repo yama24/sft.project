@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer text-sm">
   <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
   All rights reserved.
   <div class="float-right d-none d-sm-inline-block">
@@ -35,7 +35,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
       </li>
     </ul>
 
-    <a href="<?= base_url('login/keluar') ?>" class="btn btn-danger btn-block"><b>Logout</b></a>
+    <a href="#" class="btn btn-danger btn-block" onclick="logoutPrompt()"><b>Logout</b></a>
   </div>
 </aside>
 <!-- /.control-sidebar -->
@@ -59,7 +59,12 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 
 
 <script src="<?php echo base_url() ?>assets/plugins/chart.js-3.2.1/dist/chart.min.js"></script>
-<?php if (!(date('His') >= 060000 && date('His') <= 180000)) { ?>
+<script>
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+<?php if ($this->session->userdata('color') == 'dark') { ?>
   <script>
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
@@ -79,7 +84,8 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
             borderColor: [
               'rgba(220, 53, 69, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 5,
+            borderRadius: 20
           },
           {
             label: 'Income',
@@ -92,11 +98,32 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
             borderColor: [
               'rgba(0, 123, 255, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 5,
+            borderRadius: 20
           }
         ]
       },
       options: {
+        plugins: {
+          tooltip: {
+            usePointStyle: true,
+            callbacks: {
+              label: function(context) {
+                var label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat('id-Id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                  }).format(context.parsed.y);
+                }
+                return label;
+              }
+            }
+          },
+        },
         scales: {
           y: {
             beginAtZero: true,
@@ -104,7 +131,25 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
               color: ['#666']
             },
             ticks: {
-              color: ['#fff']
+              color: ['#fff'],
+              callback: function(value, index, values) {
+                var angka = value.toString(),
+                  sisa = angka.length % 3,
+                  rupiah = angka.substr(0, sisa),
+                  ribuan = angka.substr(sisa).match(/\d{3}/g);
+                if (ribuan) {
+                  separator = sisa ? ',' : '';
+                  rupiah += separator + ribuan.join(',');
+                }
+                if (value >= 1000000000) {
+                  rupiah = rupiah.slice(0, -10) + ' M'
+                } else if (value >= 1000000) {
+                  rupiah = rupiah.slice(0, -6) + ' jt'
+                } else if (value >= 1000) {
+                  rupiah = rupiah.slice(0, -2) + ' rb'
+                }
+                return rupiah;
+              }
             }
           },
           x: {
@@ -140,7 +185,8 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
             borderColor: [
               'rgba(220, 53, 69, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 5,
+            borderRadius: 20
           },
           {
             label: 'Income',
@@ -153,14 +199,55 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
             borderColor: [
               'rgba(0, 123, 255, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 5,
+            borderRadius: 20
           }
         ]
       },
       options: {
+        plugins: {
+          tooltip: {
+            usePointStyle: true,
+            callbacks: {
+              label: function(context) {
+                var label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat('id-Id', {
+                    style: 'currency',
+                    currency: 'IDR'
+                  }).format(context.parsed.y);
+                }
+                return label;
+              }
+            }
+          },
+        },
         scales: {
           y: {
             beginAtZero: true,
+            ticks: {
+              callback: function(value, index, values) {
+                var angka = value.toString(),
+                  sisa = angka.length % 3,
+                  rupiah = angka.substr(0, sisa),
+                  ribuan = angka.substr(sisa).match(/\d{3}/g);
+                if (ribuan) {
+                  separator = sisa ? ',' : '';
+                  rupiah += separator + ribuan.join(',');
+                }
+                if (value >= 1000000000) {
+                  rupiah = rupiah.slice(0, -10) + ' M'
+                } else if (value >= 1000000) {
+                  rupiah = rupiah.slice(0, -6) + ' jt'
+                } else if (value >= 1000) {
+                  rupiah = rupiah.slice(0, -2) + ' rb'
+                }
+                return rupiah;
+              }
+            }
           }
         }
       }
@@ -309,7 +396,7 @@ saat tombol add-more ditekan, maka akan memunculkan div dengan class copy -->
   });
 </script>
 <script>
-  function logoutPrompt(){
+  function logoutPrompt() {
     var logoutConfirm = confirm('Apakah anda ingin logout?');
     if (logoutConfirm) {
       window.location.href = "<?php echo base_url() . 'login/keluar' ?>";

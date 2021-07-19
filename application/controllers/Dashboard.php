@@ -38,7 +38,13 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_dashboard', $data);
 		$this->load->view('templ/v_footer', $data);
 	}
-
+	function color()
+	{
+		$color = $this->input->post('color');
+		$uri = $this->input->post('uri');
+		$this->session->set_userdata('color', $color);
+		redirect($uri);
+	}
 	public function notfound()
 	{
 		$this->load->view('404');
