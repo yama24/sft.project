@@ -1,0 +1,1 @@
+ALTER TABLE `label`  ADD `resi` VARCHAR(250) NOT NULL  AFTER `courier`;
