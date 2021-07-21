@@ -112,13 +112,13 @@
 											<?php
 											$profit = array_sum($jualChart) - array_sum($modalChart);
 											if ($jualChart[1] == 0) {
-												$expense = (($modalChart[0] - $modalChart[1]) / 1) * 100;
-												$income = (($jualChart[0] - $jualChart[1]) / 1) * 100;
-												$profit = ((($jualChart[0] - $modalChart[0]) - ($jualChart[1] - $modalChart[1])) / 1) * 100;
+												$mexpense = (($modalChart[0] - $modalChart[1]) / 1) * 100;
+												$mincome = (($jualChart[0] - $jualChart[1]) / 1) * 100;
+												$mprofit = ((($jualChart[0] - $modalChart[0]) - ($jualChart[1] - $modalChart[1])) / 1) * 100;
 											} else {
-												$expense = (($modalChart[0] - $modalChart[1]) / $modalChart[1]) * 100;
-												$income = (($jualChart[0] - $jualChart[1]) / $jualChart[1]) * 100;
-												$profit = ((($jualChart[0] - $modalChart[0]) - ($jualChart[1] - $modalChart[1])) / $jualChart[1]) * 100;
+												$mexpense = (($modalChart[0] - $modalChart[1]) / $modalChart[1]) * 100;
+												$mincome = (($jualChart[0] - $jualChart[1]) / $jualChart[1]) * 100;
+												$mprofit = ((($jualChart[0] - $modalChart[0]) - ($jualChart[1] - $modalChart[1])) / $jualChart[1]) * 100;
 											}
 											?>
 											<span class="text-bold text-lg">Rp. <?= number_format($profit, 0, ",", "."); ?></span>
@@ -146,15 +146,15 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-sm-6 text-center">
-											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $expense; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#E6717C">
+											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $mexpense; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#E6717C">
 											<div class="knob-label">Expense</div>
 										</div>
 										<div class="col-sm-6 text-center">
-											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $income; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#4CA2FF">
+											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $mincome; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#4CA2FF">
 											<div class="knob-label">Income</div>
 										</div>
 										<div class="col-sm-12 text-center">
-											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $profit; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#68C17C">
+											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $mprofit; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#68C17C">
 											<div class="knob-label">Profit</div>
 										</div>
 									</div>

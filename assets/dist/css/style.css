@@ -1,3 +1,6 @@
+input.knob-noborder {
+    font-size: 16px !important;
+}
 input.knob-noborder:focus {
     outline: none;
 }
