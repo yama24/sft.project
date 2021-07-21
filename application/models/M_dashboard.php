@@ -91,4 +91,33 @@ class M_dashboard extends CI_Model
 		}
 		return $b;
 	}
+	function dashboardChartUntung()
+	{
+		$today = date('n');
+		$year = date('Y');
+		$b = [];
+		for ($i = 0; $i < 12; $i++) {
+			$m = $today - $i;
+			if ($m < 1) {
+				$m += 12;
+				$y = $year - 1;
+			} else {
+				$y = $year;
+			}
+			$this->db->select('(price_sell - price_buy) AS untung');
+			$this->db->where('month', $m);
+			$this->db->where('year', $y);
+			$transaction = $this->db->get('transaction')->result_array();
+			if (!$transaction) {
+				array_push($b, 0);
+			} else {
+				$a = [];
+				for ($j = 0; $j < count($transaction); $j++) {
+					array_push($a, $transaction[$j]['untung']);
+				}
+				array_push($b, array_sum($a));
+			}
+		}
+		return $b;
+	}
 }

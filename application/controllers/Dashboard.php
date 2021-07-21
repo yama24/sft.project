@@ -32,6 +32,7 @@ class Dashboard extends CI_Controller
 		$data['transaction'] = $this->m_dashboard->getAllTransaction();
 		$data['modalChart'] = $this->m_dashboard->dashboardChartModal();
 		$data['jualChart'] = $this->m_dashboard->dashboardChartJual();
+		$data['untungChart'] = $this->m_dashboard->dashboardChartUntung();
 		$data['page'] = "Dashboard";
 		$data['monthChart'] = $this->m_dashboard->getMonth();
 		$this->load->view('templ/v_header', $data);
@@ -43,6 +44,13 @@ class Dashboard extends CI_Controller
 		$color = $this->input->post('color');
 		$uri = $this->input->post('uri');
 		$this->session->set_userdata('color', $color);
+		redirect($uri);
+	}
+	function chart()
+	{
+		$chart = $this->input->post('chart');
+		$uri = $this->input->post('uri');
+		$this->session->set_userdata('chart', $chart);
 		redirect($uri);
 	}
 	public function notfound()

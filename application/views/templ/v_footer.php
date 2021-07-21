@@ -68,7 +68,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
   <script>
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-      type: 'bar',
+      type: '<?php $this->session->userdata('chart'); ?>',
       data: {
         labels: [<?php foreach (array_reverse($monthChart) as $m) {
                     echo "'" . $m . "',";
@@ -97,6 +97,20 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
             ],
             borderColor: [
               'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 5,
+            borderRadius: 20
+          },
+          {
+            label: 'Profit',
+            data: [<?php foreach (array_reverse($untungChart) as $u) {
+                      echo $u . ',';
+                    } ?>],
+            backgroundColor: [
+              'rgba(40, 167, 69, 0.7)'
+            ],
+            borderColor: [
+              'rgba(40, 167, 69, 1)'
             ],
             borderWidth: 5,
             borderRadius: 20
@@ -169,7 +183,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
   <script>
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-      type: 'bar',
+      type: '<?= $this->session->userdata('chart'); ?>',
       data: {
         labels: [<?php foreach (array_reverse($monthChart) as $m) {
                     echo "'" . $m . "',";
@@ -198,6 +212,20 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
             ],
             borderColor: [
               'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 5,
+            borderRadius: 20
+          },
+          {
+            label: 'Profit',
+            data: [<?php foreach (array_reverse($untungChart) as $u) {
+                      echo $u . ',';
+                    } ?>],
+            backgroundColor: [
+              'rgba(40, 167, 69, 0.7)'
+            ],
+            borderColor: [
+              'rgba(40, 167, 69, 1)'
             ],
             borderWidth: 5,
             borderRadius: 20

@@ -86,13 +86,26 @@
 					<!-- /.row -->
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="card">
-								<!-- <div class="card-header border-0">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Sales</h3>
-                                <a href="javascript:void(0);">View Report</a>
-                            </div>
-                        </div> -->
+							<div class="card card-outline card-primary">
+								<div class="card-header">
+									<div class="d-flex justify-content-between">
+										<h3 class="card-title">Grafik Penjualan</h3>
+										<!-- <a href="javascript:void(0);">View Report</a> -->
+										<?php if ($this->session->userdata('chart') == 'bar') : ?>
+											<form action="dashboard/chart" method="post">
+												<input type="hidden" value="line" name="chart">
+												<input type="hidden" value="<?= base_url(uri_string()); ?>" name="uri">
+												<button type="submit" class="btn btn-xs btn-primary"><i class="fas fa-chart-bar"></i> Ganti style grafik</button>
+											</form>
+										<?php else : ?>
+											<form action="dashboard/chart" method="post">
+												<input type="hidden" value="bar" name="chart">
+												<input type="hidden" value="<?= base_url(uri_string()); ?>" name="uri">
+												<button type="submit" class="btn btn-xs btn-primary"><i class="fas fa-chart-line"></i> Ganti style grafik</button>
+											</form>
+										<?php endif ?>
+									</div>
+								</div>
 								<div class="card-body">
 									<div class="d-flex">
 										<p class="d-flex flex-column">
@@ -126,7 +139,6 @@
 									<div class="position-relative mb-4">
 										<canvas id="myChart"></canvas>
 									</div>
-
 									<!-- <div class="d-flex flex-row justify-content-end">
                                 <span class="mr-2">
                                     <i class="fas fa-square text-danger"></i> Output

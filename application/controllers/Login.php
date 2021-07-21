@@ -51,6 +51,7 @@ class Login extends CI_Controller
 					'photo' => $data['pengguna_foto'],
 					'level' => $data['pengguna_level'],
 					'color' => 'light',
+					'chart' => 'bar',
 					'status' => 'telah_login'
 				);
 
