@@ -46,6 +46,8 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 <script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery Knob -->
+<script src="<?php echo base_url() ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -64,6 +66,18 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
+<script>
+  $(function() {
+    /* jQueryKnob */
+    $('.knob').knob({
+      'format': function(value) {
+        return value + '%';
+      }
+    })
+    /* END JQUERY KNOB */
+  })
+</script>
+
 <?php if ($this->session->userdata('color') == 'dark') { ?>
   <script>
     var ctx = document.getElementById('myChart');

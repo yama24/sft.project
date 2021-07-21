@@ -85,7 +85,7 @@
 					</div>
 					<!-- /.row -->
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-md-6">
 							<div class="card card-outline card-primary">
 								<div class="card-header">
 									<div class="d-flex justify-content-between">
@@ -112,26 +112,17 @@
 											<?php
 											$profit = array_sum($jualChart) - array_sum($modalChart);
 											if ($jualChart[1] == 0) {
-												$percent = (($jualChart[0] - $jualChart[1]) / 1) * 100;
+												$expense = (($modalChart[0] - $modalChart[1]) / 1) * 100;
+												$income = (($jualChart[0] - $jualChart[1]) / 1) * 100;
+												$profit = ((($jualChart[0] - $modalChart[0]) - ($jualChart[1] - $modalChart[1])) / 1) * 100;
 											} else {
-												$percent = (($jualChart[0] - $jualChart[1]) / $jualChart[1]) * 100;
+												$expense = (($modalChart[0] - $modalChart[1]) / $modalChart[1]) * 100;
+												$income = (($jualChart[0] - $jualChart[1]) / $jualChart[1]) * 100;
+												$profit = ((($jualChart[0] - $modalChart[0]) - ($jualChart[1] - $modalChart[1])) / $jualChart[1]) * 100;
 											}
 											?>
 											<span class="text-bold text-lg">Rp. <?= number_format($profit, 0, ",", "."); ?></span>
 											<span>Keuntungan Tahunan</span>
-										</p>
-										<p class="ml-auto d-flex flex-column text-right">
-											<?php
-											if ($percent > 0) { ?>
-												<span class="text-success">
-													<i class="fas fa-arrow-up"></i> <?= number_format($percent, 0, ",", "."); ?>%
-												</span>
-											<?php } else { ?>
-												<span class="text-danger">
-													<i class="fas fa-arrow-down"></i> <?= number_format($percent, 0, ",", "."); ?>%
-												</span>
-											<?php  } ?>
-											<span class="text-muted">dari bulan lalu</span>
 										</p>
 									</div>
 									<!-- /.d-flex -->
@@ -139,15 +130,34 @@
 									<div class="position-relative mb-4">
 										<canvas id="myChart"></canvas>
 									</div>
-									<!-- <div class="d-flex flex-row justify-content-end">
-                                <span class="mr-2">
-                                    <i class="fas fa-square text-danger"></i> Output
-                                </span>
+								</div>
+							</div>
+							<!-- /.card -->
 
-                                <span>
-                                    <i class="fas fa-square text-info"></i> Input
-                                </span>
-                            </div> -->
+						</div>
+						<div class="col-md-6">
+							<div class="card card-outline card-primary">
+								<div class="card-header">
+									<div class="d-flex justify-content-between">
+										<h3 class="card-title">Performa dari bulan lalu</h3>
+										<!-- <a href="javascript:void(0);">View Report</a> -->
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-6 text-center">
+											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $expense; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#E6717C">
+											<div class="knob-label">Expense</div>
+										</div>
+										<div class="col-sm-6 text-center">
+											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $income; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#4CA2FF">
+											<div class="knob-label">Income</div>
+										</div>
+										<div class="col-sm-12 text-center">
+											<input type="text" class="knob knob-noborder" data-min="-100" data-max="100" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="<?= $profit; ?>" data-readonly="true" data-width="120" data-height="120" data-fgColor="#68C17C">
+											<div class="knob-label">Profit</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<!-- /.card -->

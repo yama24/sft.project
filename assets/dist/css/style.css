@@ -1,0 +1,3 @@
+input.knob-noborder:focus {
+    outline: none;
+}
