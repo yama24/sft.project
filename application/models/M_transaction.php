@@ -89,6 +89,7 @@ class M_transaction extends CI_Model
 	}
 	public function insertTransaction()
 	{
+		$tanggal = $this->input->post('tanggal');
 		$pengirim = $this->input->post('pengirim');
 		$hppengirim = $this->input->post('hppengirim');
 		$penerima = $this->input->post('penerima');
@@ -102,7 +103,7 @@ class M_transaction extends CI_Model
 		$kurir = $this->input->post('kurir');
 		$ongkir = $this->input->post('ongkir');
 		$resi = $this->input->post('resi');
-		$date = time();
+		$date = strtotime($tanggal);
 		$key = "SFT" . $date;
 		$idProduk = $this->input->post('produk');
 		$jumlah = $this->input->post('jumlah');

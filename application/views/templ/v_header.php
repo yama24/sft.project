@@ -52,7 +52,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 				<!-- Notifications Dropdown Menu -->
 				<li class="nav-item">
 					<?php if ($this->session->userdata('color') == 'dark') { ?>
-						<form action="dashboard/color" method="post">
+						<form action="<?= base_url(); ?>/dashboard/color" method="post">
 							<input type="hidden" value="light" name="color">
 							<input type="hidden" value="<?= base_url(uri_string()); ?>" name="uri">
 							<button type="submit" style="border: none; background-color: transparent;" class="nav-link" data-toggle="tooltip" data-placement="bottom" title="mode gelap on">
@@ -61,7 +61,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
 							</button>
 						</form>
 					<?php } else { ?>
-						<form action="dashboard/color" method="post">
+						<form action="<?= base_url(); ?>/dashboard/color" method="post">
 							<input type="hidden" value="dark" name="color">
 							<input type="hidden" value="<?= base_url(uri_string()); ?>" name="uri">
 							<button type="submit" style="border: none; background-color: transparent;" class="nav-link" data-toggle="tooltip" data-placement="bottom" title="mode gelap off">

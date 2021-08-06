@@ -29,6 +29,7 @@ class Transaction extends CI_Controller
         $data['page'] = "New Transaction";
         $data['product'] = $this->m_transaction->getActiveProduct();
         $data['provinces'] = $this->m_transaction->getProvinces();
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
         $this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
         $this->form_validation->set_rules('hppengirim', 'No. Hp Pengirim', 'required|numeric');
         $this->form_validation->set_rules('hppenerima', 'No. Hp Penerima', 'numeric');

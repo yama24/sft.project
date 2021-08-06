@@ -45,6 +45,11 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
+											<label for="tanggal">Tanggal</label>
+											<input type="datetime-local" class="form-control" name="tanggal" id="tanggal" value="<?= set_value('tanggal'); ?>">
+											<?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>'); ?>
+										</div>
+										<div class="form-group">
 											<label for="pengirim">Pengirim</label>
 											<input type="text" class="form-control" placeholder="Isi dengan nama pengirim" name="pengirim" id="pengirim" value="<?= set_value('pengirim'); ?>">
 											<?= form_error('pengirim', '<small class="text-danger pl-3">', '</small>'); ?>

@@ -49,6 +49,12 @@
 										<div class="form-group">
 											<input type="hidden" name="key" value="<?= $label['transaction_key_label']; ?>">
 											<input type="hidden" name="date" value="<?= $label['date_int']; ?>">
+											<label for="tanggal">Tanggal</label>
+											<input type="datetime-local" class="form-control" placeholder="Isi dengan nama tanggal" name="tanggal" id="tanggal" value="<?= date('Y-m-d\TH:i', $label['date_int']); ?>">
+											<?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>'); ?>
+										</div>
+
+										<div class="form-group">
 											<label for="pengirim">Pengirim</label>
 											<input type="text" class="form-control" placeholder="Isi dengan nama pengirim" name="pengirim" id="pengirim" value="<?= $label['sender']; ?>">
 											<?= form_error('pengirim', '<small class="text-danger pl-3">', '</small>'); ?>

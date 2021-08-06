@@ -82,7 +82,7 @@ $user = $this->db->get_where('pengguna', ['pengguna_id' => $id_user])->row_array
   <script>
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-      type: '<?php $this->session->userdata('chart'); ?>',
+      type: '<?= $this->session->userdata('chart'); ?>',
       data: {
         labels: [<?php foreach (array_reverse($monthChart) as $m) {
                     echo "'" . $m . "',";
