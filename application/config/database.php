@@ -78,8 +78,8 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
 		'dsn'	=> '',
 		'hostname' => 'localhost',
 
-		'username' => 'root',
-		'password' => 'root',
+		'username' => 'yama',
+		'password' => 'Muhammad',
 		'database' => 'sft.project',
 
 		'dbdriver' => 'mysqli',
